@@ -323,10 +323,7 @@ select#model-select option,select#model-select optgroup{color:var(--ink);backgro
 .mbar.on{transform:none}
 @media (max-width:900px){
   .mbar{display:flex}
-  /* el cartel "Powered by Netlify" va fijo abajo y no se puede mover desde acá:
-     la barra deja libre esa franja de abajo y su contenido queda por encima */
-  .mbar{padding-bottom:calc(76px + env(safe-area-inset-bottom, 0px))}
-  body.has-pick{padding-bottom:calc(160px + env(safe-area-inset-bottom, 0px))}
+  body.has-pick{padding-bottom:calc(96px + env(safe-area-inset-bottom, 0px))}
 }
 
 /* TRABAJOS */
@@ -850,6 +847,7 @@ footer{padding:clamp(96px,12vw,200px) 0 28px;overflow:hidden}
       <span>© <span id="year">2026</span> KFA Lab · Reparación de iPhone en Malagueño, Córdoba</span>
       <a class="js-contact" href="https://wa.me/5493515721212?text=Hola%20KFA%20Lab%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">WhatsApp 351 572-1212</a>
       <a href="https://www.instagram.com/kfa.lab/" target="_blank" rel="noopener">@kfa.lab en Instagram</a>
+      <span>Sitio construido por KFA Lab</span>
     </div>
   </div>
 </footer>
