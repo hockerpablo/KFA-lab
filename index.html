@@ -1,0 +1,1552 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>KFA Lab · Reparación de iPhone en Malagueño</title>
+<meta name="description" content="Reparación de iPhone en Malagueño, Córdoba. Pantallas, baterías, cámaras, flex y placa. Precios por modelo.">
+<meta name="theme-color" content="#0f1011">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap">
+<style>
+/* Layout: banda oscura del banco (portada), buscador sobre fondo claro de mesada, galería de trabajos,
+   laboratorio en split, contacto, cierre con la marca a ancho completo. Acento: el azul de la estación y las cajas del banco. */
+:root{
+  --dark:#0f1011;
+  --dark-2:#1a1b1d;
+  --paper:#e8eaeb;
+  --paper-2:#dadde0;
+  --paper-3:#caced2;
+  --on-dark:#f1f2f3;
+  --on-dark-muted:#a9adb2;
+  --ink:#141414;
+  --ink-muted:#50555b;
+  --accent:#4a9df0;
+  --accent-ink:#04121f;
+  --accent-soft:#cfe3fa;
+  --accent-hover:#6cb1f5;
+  --gutter:clamp(16px,3.2vw,40px);
+  --radius:clamp(14px,1.4vw,22px);
+  --max:1360px;
+  --ease-out:cubic-bezier(.22,1,.36,1);
+  color-scheme:dark;
+  --f:"Archivo",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;
+  padding-top:env(safe-area-inset-top, 0px);padding-bottom:env(safe-area-inset-bottom, 0px);
+  scroll-padding-top:calc(env(safe-area-inset-top, 0px) + 84px)}
+[hidden]:not([hidden=until-found i]){display:none !important}
+body{
+  margin:0;background:var(--dark);color:var(--on-dark);
+  font-family:var(--f);font-size:17px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+::selection{background:var(--accent);color:var(--accent-ink)}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:max(var(--gutter), env(safe-area-inset-left, 0px));padding-right:max(var(--gutter), env(safe-area-inset-right, 0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:25;background:var(--dark)}
+h1,h2,h3{margin:0;font-weight:800;font-stretch:80%;font-variation-settings:"wdth" 80;letter-spacing:-0.03em;line-height:.95;text-wrap:balance}
+p{margin:0;max-width:62ch}
+
+/* Botones: rectos, color plano */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:52px;padding:0 24px;border:0;border-radius:0;cursor:pointer;
+  font:700 17px/1 var(--f);text-decoration:none;
+  transition:transform .16s var(--ease-out),background-color .2s ease;
+  -webkit-user-select:none;user-select:none;
+}
+.btn:active{transform:scale(.97)}
+.btn-accent{background:var(--accent);color:var(--accent-ink)}
+.btn-accent:hover{background:var(--accent-hover)}
+.btn-light{background:var(--on-dark);color:var(--ink)}
+.btn-light:hover{background:#fff}
+.btn-dark{background:var(--ink);color:var(--on-dark)}
+.btn-dark:hover{background:#2a2a2a}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* FONDO FIJO DESENFOCADO */
+.bgfix{position:fixed;inset:0;z-index:-1;background:var(--dark);pointer-events:none}
+.bgfix img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;opacity:.28;transform:scale(1.03)}
+
+/* NAV */
+.nav{position:sticky;top:env(safe-area-inset-top, 0px);z-index:20;background:var(--dark)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:64px}
+.brand{display:inline-flex;align-items:center;gap:.24em;min-height:44px;font-weight:900;font-stretch:75%;font-size:24px;letter-spacing:-0.02em;text-decoration:none}
+.brand span{color:var(--accent)}
+.nav .btn{min-height:44px;padding:0 18px;font-size:15px}
+
+/* MENÚ DESPLEGABLE (estilo mega menú) */
+.menu{position:relative;display:flex;align-items:stretch;height:64px}
+.menu-item{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:6px;padding:0 18px;height:100%;cursor:pointer;
+  font:500 16px/1 var(--f);color:var(--on-dark-muted);transition:color .18s ease;-webkit-user-select:none;user-select:none}
+.menu-item:hover,.menu-item[aria-expanded="true"]{color:var(--on-dark)}
+.menu-item:focus-visible{outline:2px solid var(--accent);outline-offset:-6px}
+.menu-item svg{width:14px;height:14px;transition:transform .3s var(--ease-out)}
+.menu-item[aria-expanded="true"] svg{transform:rotate(180deg)}
+.menu-ind{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--accent);border-radius:3px 3px 0 0;
+  opacity:0;transition:transform .32s var(--ease-out),width .32s var(--ease-out),opacity .2s ease;pointer-events:none}
+.menu-ind.on{opacity:1}
+
+.mega{position:absolute;left:0;right:0;top:100%;height:0;overflow:hidden;background:#16171a;
+  transition:height .38s var(--ease-out);box-shadow:0 24px 48px -12px rgba(0,0,0,.55)}
+.mega.closing{transition:height .26s cubic-bezier(.4,0,1,1)}
+.mega-scrim{position:fixed;inset:0;z-index:-1;background:rgba(5,6,7,.55);opacity:0;pointer-events:none;transition:opacity .3s ease}
+.mega-scrim.on{opacity:1;pointer-events:auto}
+.panel{display:none;max-width:var(--max);margin:0 auto;
+  padding:clamp(24px,3vw,40px) max(var(--gutter), env(safe-area-inset-right, 0px)) clamp(28px,3.4vw,48px) max(var(--gutter), env(safe-area-inset-left, 0px));
+  grid-template-columns:minmax(240px,3.2fr) 8.8fr;gap:clamp(24px,3vw,56px)}
+.panel.on{display:grid}
+.feat{display:flex;flex-direction:column;gap:14px}
+.feat img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px}
+.feat h3{font-size:clamp(24px,2vw,30px);font-stretch:80%}
+.feat p{font-size:16px;color:var(--on-dark-muted)}
+.feat .btn{align-self:flex-start;min-height:46px;font-size:15px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:clamp(20px,2.4vw,40px)}
+.col h4{margin:0 0 4px;font-size:19px;font-weight:700;color:var(--on-dark)}
+.col > p{margin:0 0 14px;font-size:15px;color:var(--on-dark-muted)}
+.col ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.col a{display:block;padding:8px 10px;margin:0 -10px;border-radius:8px;text-decoration:none;color:var(--on-dark);font-size:17px;
+  transition:background-color .15s ease,color .15s ease}
+.col a:hover{background:rgba(255,255,255,.07);color:#fff}
+.col a small{display:block;font-size:14px;color:var(--on-dark-muted);margin-top:2px}
+/* entrada escalonada del contenido */
+.panel .st{opacity:0;transform:translateY(10px);transition:opacity .35s var(--ease-out),transform .45s var(--ease-out)}
+.panel.show .st{opacity:1;transform:none}
+
+/* Celular: una sola fila (logo · Menú · Ver precios); el menú es una lista simple */
+.msheet{display:none}
+.mtoggle{
+  all:unset;box-sizing:border-box;align-items:center;gap:8px;min-height:44px;padding:0 10px;margin-left:auto;
+  font-size:16px;font-weight:600;color:var(--on-dark);cursor:pointer;display:none}
+.mtoggle svg{width:20px;height:20px}
+.mtoggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.msheet{position:absolute;left:0;right:0;top:100%;background:#16171a;box-shadow:0 24px 48px -12px rgba(0,0,0,.55);
+  padding:8px max(var(--gutter), env(safe-area-inset-right, 0px)) 24px max(var(--gutter), env(safe-area-inset-left, 0px));
+  max-height:calc(100dvh - 64px - env(safe-area-inset-top, 0px));overflow-y:auto}
+.msheet ul{list-style:none;margin:0 0 16px;padding:0}
+.msheet li{padding:6px 0}
+.msheet li + li{border-top:1px solid rgba(241,242,243,.1)}
+.msheet li a{display:flex;align-items:center;min-height:44px;font-size:19px;font-weight:600;text-decoration:none;color:var(--on-dark)}
+.msheet .btn{width:100%}
+@media (max-width:820px){
+  .menu,.mega,.mega-scrim{display:none}
+  .mtoggle{display:inline-flex}
+  .mtoggle[aria-expanded="true"]{color:var(--accent)}
+  .msheet:not([hidden]){display:block}
+  .nav-in{gap:8px}
+  .nav .btn{padding:0 14px}
+}
+@media (prefers-reduced-motion: reduce){
+  .mega,.mega.closing{transition:none}
+  .panel .st{transform:none;transition:opacity .15s linear}
+  .menu-ind{transition:opacity .15s linear}
+}
+
+/* HERO */
+.hero{padding:clamp(28px,5vw,64px) 0 0}
+.hero h1{font-size:clamp(34px,8.6vw,138px);font-stretch:68%;font-variation-settings:"wdth" 68;max-width:14ch}
+.hero-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gutter);margin-top:clamp(28px,4vw,48px);align-items:start}
+.hero-photo{grid-column:1 / span 8;overflow:hidden;background:var(--dark-2);aspect-ratio:1600/1130}
+.hero-photo img{width:100%;height:100%;object-fit:cover;transform-origin:50% 60%}
+.hero-side{grid-column:9 / span 4;display:flex;flex-direction:column;gap:22px;padding-bottom:4px}
+.hero-side .lead{font-size:clamp(19px,1.5vw,21px);line-height:1.45;color:var(--on-dark)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px}
+.hero-facts{font-size:16px;color:var(--on-dark-muted);line-height:1.5}
+.hero-facts strong{color:var(--on-dark);font-weight:600}
+.hero-pick{display:none}
+.hero-pick-label{font-size:17px;font-weight:700;color:var(--on-dark);margin-bottom:10px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px}
+.hero-chips button,.hero-chips .chip-more{
+  all:unset;box-sizing:border-box;min-height:44px;padding:0 14px;display:inline-flex;align-items:center;
+  font-size:16px;font-weight:700;color:var(--on-dark);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.hero-chips button{border:1px solid rgba(241,242,243,.45);transition:background-color .15s ease,color .15s ease}
+.hero-chips button:hover,.hero-chips button:active{background:var(--on-dark);color:var(--dark)}
+.hero-chips .chip-more{text-decoration:underline;text-underline-offset:4px;font-weight:600}
+.hero-chips button:focus-visible,.hero-chips .chip-more:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:900px){
+  .hero-photo{grid-column:1 / -1}
+  .hero-side{grid-column:1 / -1;order:-1}
+  .hero-grid{margin-top:18px;row-gap:28px}
+  /* en celular la portada lleva directo al precio: modelos primero, foto después */
+  .hero-pick{display:block}
+  .hero-actions .btn-accent{display:none}
+}
+
+/* PRECIOS */
+.precios{background:var(--paper);color:var(--ink);margin-top:clamp(80px,10vw,160px);padding:clamp(72px,9vw,140px) 0}
+.precios-head{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gutter);align-items:end;margin-bottom:clamp(36px,4vw,56px)}
+.precios-head h2{grid-column:1 / span 7;font-size:clamp(40px,5.6vw,88px)}
+.precios-head .precios-intro{grid-column:9 / span 4;color:var(--ink);font-size:17px}
+.precios-meta{margin-top:12px;font-size:15px;color:var(--ink-muted)}
+.precios-meta a{color:var(--ink);text-underline-offset:3px}
+@media (max-width:900px){.precios-head h2,.precios-head .precios-intro{grid-column:1 / -1}}
+.pt-label small{display:block;margin-top:3px;font-size:14px;font-weight:500;line-height:1.35;color:var(--ink-muted)}
+
+.checker > *{min-width:0}
+.checker{display:grid;grid-template-columns:minmax(280px,4fr) 8fr;gap:var(--gutter);align-items:start}
+@media (max-width:900px){.checker{grid-template-columns:1fr}}
+.device{position:sticky;top:84px;display:flex;flex-direction:column;gap:16px}
+@media (max-width:900px){
+  .device{position:static;display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:center}
+  .device > div:first-child{grid-column:1 / -1}
+  .device-frame{aspect-ratio:3/4}
+  .device-cap{display:none}
+  .device .order{display:none}
+  .device-name{font-size:24px}
+}
+.field-label{display:block;font-size:15px;font-weight:600;margin-bottom:8px;color:var(--ink-muted)}
+select#model-select{
+  width:100%;min-height:58px;padding:0 48px 0 16px;border:0;border-radius:0;
+  background:var(--ink) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%234a9df0" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg>') no-repeat right 18px center;
+  color:var(--on-dark);font:800 22px/1 var(--f);font-stretch:85%;letter-spacing:-0.01em;
+  appearance:none;-webkit-appearance:none;cursor:pointer;
+}
+.device-frame{position:relative;background:var(--paper-2);aspect-ratio:3/4;overflow:hidden}
+.device-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .45s ease,transform .6s var(--ease-out)}
+.device-frame img.is-out{opacity:.35;transform:scale(1.03)}
+.device-sil{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.sil{width:38%;aspect-ratio:9/19.5;border-radius:22px;background:var(--ink);padding:6px;position:relative}
+.sil::before{content:"";position:absolute;inset:6px;border-radius:17px;background:var(--paper-3)}
+.sil.notch::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:44%;height:5%;background:var(--ink);border-radius:0 0 10px 10px}
+.sil.island::after{content:"";position:absolute;top:5%;left:50%;transform:translateX(-50%);width:30%;height:3.6%;background:var(--ink);border-radius:99px}
+.sil.home::after{content:"";position:absolute;bottom:3%;left:50%;transform:translateX(-50%);width:13%;aspect-ratio:1;border-radius:50%;background:var(--paper-2)}
+.device-cap{position:absolute;left:12px;bottom:12px;background:var(--paper);color:var(--ink);font-size:15px;font-weight:600;padding:6px 10px}
+.device-name{font-size:24px;font-weight:800;font-stretch:80%;letter-spacing:-0.02em;line-height:1}
+.device-spec{font-size:15px;color:var(--ink-muted);margin-top:4px}
+.device-name.is-empty{color:var(--ink-muted)}
+/* Antes de elegir modelo: el selector manda, sin la silueta grande */
+.quick{display:none;flex-wrap:wrap;align-items:center;gap:8px;margin-top:12px}
+.quick-label{font-size:14px;font-weight:600;color:var(--ink-muted);margin-right:2px}
+.quick button{
+  all:unset;box-sizing:border-box;min-width:44px;min-height:44px;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid var(--ink);font-weight:700;font-size:16px;color:var(--ink);cursor:pointer;font-variant-numeric:tabular-nums;
+  transition:background-color .15s ease,color .15s ease}
+.quick button:hover{background:var(--ink);color:var(--paper)}
+.quick button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.device.is-empty .quick{display:flex}
+.device.is-empty .device-frame,.device.is-empty .device-name{display:none}
+/* señal de "empezá acá" sin parecer foco de teclado: una franja azul abajo del selector */
+.device.is-empty select#model-select{box-shadow:inset 0 -4px 0 var(--accent)}
+@media (max-width:900px){.device.is-empty{grid-template-columns:1fr}}
+.v-from{font-size:14px;font-weight:500;color:var(--ink-muted);margin-right:.3em}
+select#model-select:invalid{color:var(--on-dark-muted)}
+select#model-select option,select#model-select optgroup{color:var(--ink);background:var(--paper)}
+
+.order{background:var(--ink);color:var(--on-dark);padding:20px;display:flex;flex-direction:column;gap:14px}
+.order-pick{font-size:17px;line-height:1.4}
+.order-pick strong{color:var(--accent);font-weight:700}
+.order .btn{width:100%}
+
+.ptable{width:100%;border-collapse:collapse;font-size:17px;color:var(--ink)}
+.ptable tr{transition:background-color .15s ease}
+.ptable tbody tr:not(.grp) + tr{border-top:1px solid var(--paper-3)}
+.ptable tr.grp th{padding:26px 14px 8px;font-size:14px;font-weight:700;color:var(--ink);font-stretch:85%;letter-spacing:.01em;border-bottom:2px solid var(--ink)}
+.ptable tbody:first-of-type + tbody tr.grp th{padding-top:18px}
+.ptable tr.diag{background:var(--paper-2)}
+.ptable th,.ptable td{padding:0;text-align:left;vertical-align:top}
+.ptable th button{
+  all:unset;box-sizing:border-box;display:flex;align-items:flex-start;gap:10px;width:100%;padding:16px 14px;cursor:pointer;
+  font-weight:600;color:var(--ink);
+}
+/* círculo de selección: dice "esto se toca" sin depender del hover */
+.ptable th button::before{
+  content:"";flex:none;width:20px;height:20px;margin-top:1px;border-radius:50%;box-sizing:border-box;
+  border:2px solid var(--ink-muted);background:var(--paper);transition:border-color .15s ease,box-shadow .15s ease;
+}
+.ptable tr.pickable:hover th button::before{border-color:var(--ink)}
+.ptable tr.is-picked th button::before{border-color:var(--accent);box-shadow:inset 0 0 0 4px var(--paper),inset 0 0 0 10px var(--accent)}
+.ptable th button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.ptable td{padding:16px 14px;text-align:right;font-variant-numeric:tabular-nums}
+.ptable tr.pickable{cursor:pointer}
+.ptable tr.pickable:hover{background:var(--paper-3)}
+.ptable tr.is-picked{background:var(--accent-soft) !important}
+.ptable tr.pickable:active td,.ptable tr.pickable:active th{transform:translateY(1px)}
+.v-main{display:block;font-weight:800;font-size:19px}
+.v-soft{color:var(--ink-muted);font-weight:500;font-style:italic;font-size:16px}
+.v-sub{display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:2px 6px;margin-top:4px;font-size:15px;color:var(--ink-muted);font-weight:500}
+.v-sub.v-part{color:var(--ink);font-weight:600;flex-wrap:wrap;column-gap:.3em;row-gap:2px}
+.v-nw{white-space:nowrap}
+.v-sub.v-part .v-tbd{color:var(--ink-muted);font-weight:500;font-style:italic}
+.brand-tag{font-size:13px;font-weight:600;color:var(--ink-muted);white-space:nowrap}
+.ptable thead th{padding:0 14px 10px;font-size:14px;font-weight:600;color:var(--ink-muted);border-bottom:1px solid var(--paper-3)}
+.ptable thead th:last-child{text-align:right}
+.v-more{margin-top:6px;font-size:14px;color:var(--ink-muted)}
+.v-more summary{display:inline-block;cursor:pointer;list-style:none;text-decoration:underline;text-underline-offset:3px;font-weight:600}
+.v-more summary::-webkit-details-marker{display:none}
+.v-more ul{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:3px}
+@media (max-width:600px){
+  .ptable th button{padding:14px 10px;gap:8px}
+  .ptable tr.grp th{padding:22px 10px 8px}
+  .ptable td{padding:14px 10px}
+  .ptable th{width:38%}
+  .ptable td{padding-left:4px}
+  .v-sub{font-size:14px}
+  .v-sub.v-part{column-gap:.25em}
+  .ptable thead th{padding:0 10px 10px}
+}
+.price-foot{margin-top:24px;font-size:15px;color:var(--ink-muted);max-width:62ch}
+.price-noscript{padding:20px;background:var(--paper-2);color:var(--ink);font-weight:600;max-width:62ch}
+.price-noscript a{color:var(--ink);text-underline-offset:3px}
+
+/* barra fija del pedido en celular */
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--ink);color:var(--on-dark);
+  padding:12px max(var(--gutter), env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(var(--gutter), env(safe-area-inset-left, 0px));display:none;gap:12px;align-items:center;
+  transform:translateY(110%);transition:transform .35s var(--ease-out)}
+.mbar p{font-size:15px;line-height:1.3;flex:1;min-width:0}
+.mbar p strong{color:var(--accent)}
+.mbar p .mbar-price{display:block;color:var(--on-dark-muted);font-variant-numeric:tabular-nums}
+.mbar .btn{min-height:46px;padding:0 16px;font-size:15px;flex:none}
+.mbar.on{transform:none}
+@media (max-width:900px){
+  .mbar{display:flex}
+  body.has-pick{padding-bottom:calc(96px + env(safe-area-inset-bottom, 0px))}
+}
+
+/* TRABAJOS */
+.section{padding:clamp(96px,12vw,200px) 0 0}
+.sec-head{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gutter);margin-bottom:clamp(32px,4vw,56px);align-items:end}
+.sec-head h2{grid-column:1 / span 7;font-size:clamp(40px,5.6vw,88px)}
+.sec-head p{grid-column:9 / span 4;color:var(--on-dark);font-size:17px}
+@media (max-width:900px){.sec-head h2,.sec-head p{grid-column:1 / -1}}
+
+.car{position:relative}
+.car-track{display:flex;gap:var(--gutter);overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  overscroll-behavior-x:contain;scrollbar-width:none;cursor:grab;
+  padding-left:max(var(--gutter), env(safe-area-inset-left, 0px), calc((100% - var(--max)) / 2 + var(--gutter)));padding-right:max(var(--gutter), env(safe-area-inset-left, 0px), calc((100% - var(--max)) / 2 + var(--gutter)));
+  scroll-padding-inline:max(var(--gutter), env(safe-area-inset-left, 0px), calc((100% - var(--max)) / 2 + var(--gutter)))}
+.car-track::-webkit-scrollbar{display:none}
+.car-track.drag{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
+.slide{flex:0 0 clamp(260px,30vw,420px);margin:0;scroll-snap-align:start;-webkit-user-select:none;user-select:none}
+.slide-img{overflow:hidden;background:var(--dark-2)}
+.slide img{width:100%;aspect-ratio:4/5;object-fit:cover;pointer-events:none;transform:scale(1.04);transition:transform .9s var(--ease-out)}
+.slide.vis img{transform:none}
+.slide figcaption{margin-top:12px;font-size:16px;color:var(--on-dark-muted)}
+.slide figcaption strong{color:var(--on-dark);font-weight:700}
+@media (max-width:700px){.slide{flex-basis:78%}}
+.car-ctrl{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:24px}
+.car-count{font-size:17px;color:var(--on-dark-muted);font-variant-numeric:tabular-nums}
+.car-count b{color:var(--on-dark);font-weight:700}
+.car-btns{display:flex;gap:8px}
+.car-btn{width:52px;height:52px;border:0;border-radius:0;background:var(--on-dark);color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .16s var(--ease-out),opacity .2s ease,background-color .2s ease}
+.car-btn:hover{background:#fff}
+.car-btn:active{transform:scale(.94)}
+.car-btn:disabled{opacity:.3;cursor:default;transform:none}
+.car-btn svg{width:22px;height:22px}
+.car-bar{flex:1;height:4px;background:rgba(255,255,255,.14);position:relative;max-width:420px}
+.car-bar i{position:absolute;left:0;top:0;bottom:0;background:var(--accent);width:10%;transition:width .3s var(--ease-out)}
+@media (max-width:700px){.car-btns{display:none}}
+
+/* LABORATORIO */
+.lab-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gutter);align-items:start}
+.lab-photo{grid-column:1 / span 5;background:var(--dark-2)}
+.lab-photo img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 60%}
+.lab-text{grid-column:7 / span 6;display:flex;flex-direction:column;gap:24px}
+.lab-text h2{font-size:clamp(40px,5vw,80px)}
+.lab-text .lead{font-size:clamp(19px,1.5vw,21px);line-height:1.5}
+.svc{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 var(--gutter)}
+.svc li{padding:16px 0}
+.svc li:nth-child(4n+1),.svc li:nth-child(4n+2){background:transparent}
+.svc b{display:block;font-size:clamp(24px,2.2vw,32px);font-weight:800;font-stretch:80%;letter-spacing:-0.02em;line-height:1.05}
+.svc span{display:block;color:var(--on-dark-muted);font-size:16px;margin-top:4px}
+@media (max-width:900px){
+  .lab-photo,.lab-text{grid-column:1 / -1}
+}
+@media (max-width:520px){.svc{grid-template-columns:1fr}}
+
+/* PLACAS */
+.placas{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gutter);margin-top:clamp(40px,5vw,72px)}
+.placas figure{margin:0}
+.placas img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--radius)}
+.placas figcaption{margin-top:10px;font-size:15px;color:var(--on-dark-muted)}
+@media (max-width:900px){.placas{grid-template-columns:1fr 1fr;gap:20px 12px}}
+
+/* REPUESTOS Y PROGRAMACIÓN */
+.prog-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gutter);align-items:start}
+.prog-text{grid-column:1 / span 5;display:flex;flex-direction:column;gap:24px}
+.prog-text h2{font-size:clamp(40px,5vw,80px)}
+.prog-text .lead{font-size:clamp(19px,1.5vw,21px);line-height:1.5}
+.prog-list{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.prog-list b{display:block;font-size:clamp(21px,1.8vw,24px);font-weight:800;font-stretch:85%;letter-spacing:-0.01em}
+.prog-list span{display:block;color:var(--on-dark-muted);font-size:16px;margin-top:2px}
+.prog-note{font-size:15px;color:var(--on-dark-muted)}
+.prog-photos{grid-column:7 / span 6;display:grid;grid-template-columns:1fr 1fr;gap:var(--gutter)}
+.prog-photos figure{margin:0}
+.prog-photos figure:first-child{grid-column:1 / -1}
+.prog-photos img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.prog-photos figure:first-child img{aspect-ratio:4/3;object-position:50% 70%}
+.prog-photos figcaption{padding:10px 0 0;font-size:15px;color:var(--on-dark-muted)}
+@media (max-width:900px){.prog-text{grid-column:1 / -1;position:static}.prog-photos{grid-column:1 / -1}}
+
+/* ANTES DE TRAERLO */
+.como-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gutter);align-items:start}
+.como-text{grid-column:1 / span 6}
+.como-text h2{font-size:clamp(40px,5.6vw,88px)}
+.como-photo{grid-column:8 / span 5;background:var(--dark-2)}
+.como-photo img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.steps{display:grid;gap:clamp(28px,3vw,44px);margin-top:clamp(32px,4vw,56px);counter-reset:paso}
+/* el orden importa (contar → repuesto → diagnóstico), así que el número lleva información */
+.step{padding-top:clamp(16px,1.6vw,22px);border-top:1px solid rgba(241,242,243,.16)}
+.step h3{font-size:clamp(24px,2.2vw,32px);margin-bottom:12px}
+.step h3::before{counter-increment:paso;content:counter(paso);color:var(--accent);margin-right:.45em;font-variant-numeric:tabular-nums}
+.step p{color:var(--on-dark);font-size:17px}
+.step p small{display:block;margin-top:10px;color:var(--on-dark-muted);font-size:15px}
+@media (max-width:900px){.como-text,.como-photo{grid-column:1 / -1}.como-photo img{aspect-ratio:4/3}}
+
+/* PROVEEDORES */
+
+/* UBICACIÓN */
+.visit-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gutter);align-items:stretch}
+.visit-text{grid-column:1 / span 6;display:flex;flex-direction:column;gap:28px;justify-content:space-between}
+.visit-text h2{font-size:clamp(44px,6.2vw,100px)}
+.facts{display:grid;gap:18px}
+.facts div{font-size:clamp(19px,1.5vw,21px)}
+.facts span{display:block;font-size:15px;color:var(--on-dark-muted)}
+.visit-actions{display:flex;flex-wrap:wrap;gap:10px}
+.visit-photo{grid-column:7 / span 6;background:var(--dark-2)}
+.visit-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+@media (max-width:900px){.visit-text,.visit-photo{grid-column:1 / -1}}
+
+/* FOOTER */
+footer{padding:clamp(96px,12vw,200px) 0 28px;overflow:hidden}
+.foot-mark{font-weight:900;font-stretch:62%;font-size:clamp(72px,21vw,360px);line-height:.8;letter-spacing:-0.04em;margin:0 0 24px;white-space:nowrap}
+.foot-mark span{color:var(--accent)}
+.foot-line{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 28px;font-size:15px;color:var(--on-dark-muted)}
+.foot-line > span{margin-right:auto}
+.foot-line a{color:var(--on-dark);display:inline-flex;align-items:center;min-height:44px}
+
+/* FOTOS CON BORDES REDONDEADOS */
+.hero-photo,.device-frame,.slide-img,.lab-photo,.como-photo,.visit-photo,.prog-photos img{border-radius:var(--radius);overflow:hidden}
+.device-cap{border-radius:8px}
+@media (max-width:900px){.device-frame{border-radius:12px}}
+
+/* MOVIMIENTO */
+.rv{opacity:1}
+.js .rv{transform:translateY(20px);transition:transform .8s var(--ease-out)}
+.js .rv.in{opacity:1;transform:none}
+.js .hero-photo img{transform:scale(1.08);transition:transform 1.8s var(--ease-out)}
+.js .hero-photo.in img{transform:scale(1)}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .js .rv{transform:none;transition:none}
+  .js .hero-photo img{transform:none;transition:none}
+  .device-frame img{transition:opacity .2s linear}
+  .device-frame img.is-out{transform:none}
+}
+</style>
+<noscript><style>.checker .device,.price-foot{display:none}.checker{grid-template-columns:1fr}</style></noscript>
+</head>
+<body>
+
+<div class="bgfix" aria-hidden="true"><img src="fotos/fondo-lab.jpg" alt=""></div>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">KFA <span>Lab</span></a>
+    <nav class="menu" id="menu" aria-label="Secciones">
+      <button class="menu-item" type="button" aria-expanded="false" aria-controls="p-precios" data-panel="p-precios">Precios <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button class="menu-item" type="button" aria-expanded="false" aria-controls="p-lab" data-panel="p-lab">Laboratorio <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button class="menu-item" type="button" aria-expanded="false" aria-controls="p-contacto" data-panel="p-contacto">Contacto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></button>
+      <span class="menu-ind" id="menu-ind" aria-hidden="true"></span>
+    </nav>
+    <button class="mtoggle" id="mtoggle" type="button" aria-expanded="false" aria-controls="msheet">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menú
+    </button>
+    <a class="btn btn-accent" href="#precios">Ver precios</a>
+  </div>
+  <!-- menú del celular: una lista simple de secciones en vez de los desplegables -->
+  <nav class="msheet" id="msheet" aria-label="Secciones" hidden>
+    <ul>
+      <li><a href="#precios">Precios por modelo</a></li>
+      <li><a href="#trabajos">Trabajos</a></li>
+      <li><a href="#laboratorio">Laboratorio y placa</a></li>
+      <li><a href="#repuestos">Repuestos programados</a></li>
+      <li><a href="#como">Antes de que lo traigas</a></li>
+      <li><a href="#visitanos">Dirección y horario</a></li>
+    </ul>
+    <a class="btn btn-accent js-contact" href="https://wa.me/5493515721212?text=Hola%20KFA%20Lab%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">Escribinos por WhatsApp</a>
+  </nav>
+  <div class="mega" id="mega">
+    <div class="panel" id="p-precios" role="region" aria-label="Precios">
+      <div class="feat st">
+        <img src="fotos/g-12-blanco.jpg" alt="iPhone 12 en el banco de trabajo" loading="lazy">
+        <h3>Precios por modelo</h3>
+        <p>Elegí tu iPhone, mirá la mano de obra y el repuesto, y armá tu consulta.</p>
+        <a class="btn btn-accent" href="#precios">Ver todos los precios</a>
+      </div>
+      <div class="cols">
+        <div class="col st"><h4>Reparaciones</h4><p>Te lleva a la lista con la reparación marcada.</p><ul>
+          <li><a href="#precios" data-pick="2">Pantalla<small>Incell, OLED o autoprogramable</small></a></li>
+          <li><a href="#precios" data-pick="0">Batería<small>Estándar o Diagnostic</small></a></li>
+          <li><a href="#precios" data-pick="5">Flex de carga</a></li>
+          <li><a href="#precios" data-pick="8">Cámara trasera</a></li>
+          <li><a href="#precios" data-pick="10">Face ID</a></li>
+        </ul></div>
+        <div class="col st"><h4>Modelos más pedidos</h4><p>Abre los precios de ese modelo.</p><ul>
+          <li><a href="#precios" data-model="4">iPhone 11</a></li>
+          <li><a href="#precios" data-model="8">iPhone 12</a></li>
+          <li><a href="#precios" data-model="12">iPhone 13</a></li>
+          <li><a href="#precios" data-model="15">iPhone 14</a></li>
+          <li><a href="#precios" data-model="19">iPhone 15</a></li>
+          <li><a href="#precios" data-model="26">iPhone 16 Pro Max</a></li>
+        </ul></div>
+        <div class="col st"><h4>Repuestos</h4><p>Lo que ponemos en tu equipo.</p><ul>
+          <li><a href="#repuestos">Repuestos programados<small>Sin aviso de pieza no original</small></a></li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="panel" id="p-lab" role="region" aria-label="Laboratorio">
+      <div class="feat st">
+        <img src="fotos/p-banco-placa.jpg" alt="Banco de microsoldadura con microscopio y multímetro" loading="lazy">
+        <h3>Microsoldadura y diagnóstico</h3>
+        <p>Microscopio, esquemáticos y medición sobre la placa.</p>
+        <a class="btn btn-accent" href="#laboratorio">Conocer el laboratorio</a>
+      </div>
+      <div class="cols">
+        <div class="col st"><h4>Servicios</h4><p>Lo que hacemos en el banco.</p><ul>
+          <li><a href="#laboratorio">Placa a nivel de componente<small>Face ID, reballing, placa sándwich</small></a></li>
+          <li><a href="#repuestos">Programación de periféricos<small>Batería y pantalla con JCID V1SE</small></a></li>
+          <li><a href="#como">Antes de que lo traigas<small>Cómo trabajamos</small></a></li>
+        </ul></div>
+        <div class="col st"><h4>Trabajos</h4><p>Equipos que pasaron por el banco.</p><ul>
+          <li><a href="#trabajos">Galería de trabajos<small>iPhone 7 Plus al 12</small></a></li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="panel" id="p-contacto" role="region" aria-label="Contacto">
+      <div class="feat st">
+        <img src="fotos/lab-12-frente.jpg" alt="El laboratorio de KFA Lab" loading="lazy">
+        <h3>Peñeñory 598, Malagueño</h3>
+        <p>Lunes a viernes, de 9 a 20 h.</p>
+        <a class="btn btn-accent js-contact" href="https://wa.me/5493515721212?text=Hola%20KFA%20Lab%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">Escribinos</a>
+      </div>
+      <div class="cols">
+        <div class="col st"><h4>Visitanos</h4><p>Pasá con el equipo.</p><ul>
+          <li><a href="https://www.google.com/maps/search/?api=1&query=Pe%C3%B1e%C3%B1ory%20598%2C%20Malague%C3%B1o%2C%20C%C3%B3rdoba" target="_blank" rel="noopener">Cómo llegar<small>Abre Google Maps</small></a></li>
+          <li><a href="#visitanos">Horarios y dirección</a></li>
+        </ul></div>
+        <div class="col st"><h4>Redes</h4><p>Consultas y trabajos nuevos.</p><ul>
+          <li><a href="https://www.instagram.com/kfa.lab/" target="_blank" rel="noopener">Instagram<small>@kfa.lab</small></a></li>
+          <li><a class="js-contact" href="https://wa.me/5493515721212?text=Hola%20KFA%20Lab%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">WhatsApp<small>351 572-1212</small></a></li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="mega-scrim" id="mega-scrim"></div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <h1 class="rv">Tu iPhone, reparado al microscopio.</h1>
+    <div class="hero-grid">
+      <div class="hero-photo rv">
+        <img src="fotos/banco-ancho.jpg" width="1600" height="1130" alt="Banco de trabajo de KFA Lab: un iPhone 12 blanco frente al microscopio RELIFE, el multímetro y el esquemático de la placa en pantalla" fetchpriority="high">
+      </div>
+      <div class="hero-side">
+        <p class="lead rv">Pantallas, baterías, cámaras, flex y placa para iPhone X a 16 Pro Max. Diagnóstico real antes de cotizar.</p>
+        <!-- solo en celular: el precio a un toque, sin bajar toda la portada -->
+        <div class="hero-pick rv">
+          <p class="hero-pick-label">¿Qué iPhone tenés?</p>
+          <div class="hero-chips">
+            <button type="button" data-model="4">iPhone 11</button>
+            <button type="button" data-model="8">iPhone 12</button>
+            <button type="button" data-model="12">iPhone 13</button>
+            <button type="button" data-model="15">iPhone 14</button>
+            <button type="button" data-model="19">iPhone 15</button>
+            <a class="chip-more" href="#precios">Otro modelo</a>
+          </div>
+        </div>
+        <div class="hero-actions rv">
+          <a class="btn btn-accent" href="#precios">Ver precios por modelo</a>
+          <a class="btn btn-light js-contact" href="https://wa.me/5493515721212?text=Hola%20KFA%20Lab%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">Escribinos</a>
+        </div>
+        <p class="hero-facts rv"><strong>Peñeñory 598, Malagueño.</strong><br>Lunes a viernes, de 9 a 20 h.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="precios" id="precios">
+  <div class="wrap">
+    <div class="precios-head">
+      <h2 class="rv">Elegí tu iPhone y mirá el precio.</h2>
+      <div class="precios-intro rv">
+        <p>Cada precio tiene dos partes: la mano de obra en dólares y el repuesto en pesos, que se suma aparte. Tocá una reparación para pedir presupuesto por WhatsApp.</p>
+        <p class="precios-meta">Precios actualizados el <span id="precios-fecha">18/10/2026</span>. La mano de obra se calcula al dólar promedio del día en Córdoba, según <a href="https://www.infodolar.com/cotizacion-dolar-localidad-cordoba-provincia-cordoba.aspx" target="_blank" rel="noopener">Infodolar</a>.</p>
+      </div>
+    </div>
+
+    <div class="checker">
+      <aside class="device rv">
+        <div>
+          <label class="field-label" for="model-select">Tu modelo</label>
+          <select id="model-select" required></select>
+          <div class="quick" id="quick-models">
+            <span class="quick-label">Más pedidos:</span>
+            <button type="button" data-model="4">iPhone 11</button>
+            <button type="button" data-model="8">iPhone 12</button>
+            <button type="button" data-model="12">iPhone 13</button>
+            <button type="button" data-model="15">iPhone 14</button>
+            <button type="button" data-model="19">iPhone 15</button>
+          </div>
+        </div>
+        <div class="device-frame" id="device-frame">
+          <div class="device-sil" id="device-sil"><div class="sil" id="sil"></div></div>
+          <img id="device-photo" src="fotos/lab-12-frente.jpg" alt="" loading="lazy" hidden>
+          <span class="device-cap" id="device-cap" hidden>Foto real del laboratorio</span>
+        </div>
+        <div>
+          <div class="device-name" id="device-name">—</div>
+          <div class="device-spec" id="device-spec">—</div>
+        </div>
+        <div class="order">
+          <p class="order-pick" id="order-pick" aria-live="polite">Tocá una reparación de la lista para armar tu consulta.</p>
+          <a class="btn btn-accent" id="order-btn" href="https://wa.me/5493515721212?text=Hola%20KFA%20Lab%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">Pedir presupuesto por WhatsApp</a>
+        </div>
+      </aside>
+
+      <div class="rv">
+        <table class="ptable" id="price-table" aria-describedby="price-foot"></table>
+        <noscript>
+          <p class="price-noscript">Para ver los precios por modelo, activá JavaScript en tu navegador. También podés escribirnos directo por WhatsApp al <a href="https://wa.me/5493515721212?text=Hola%20KFA%20Lab%2C%20quiero%20hacer%20una%20consulta.">351 572-1212</a> con tu modelo y la falla, y te pasamos el precio.</p>
+        </noscript>
+        <p class="price-foot" id="price-foot">El precio del repuesto sale de la lista del mayorista y puede cambiar; si dice "a confirmar", te lo pasamos por WhatsApp. "A consultar" se presupuesta con vos, según disponibilidad del repuesto. Si una reparación no aparece, es porque tu modelo no la tiene (por ejemplo, el iPhone XR no tiene versión OLED). Face ID y reparación de placa son trabajos de laboratorio, con demora habitual de 1 a 2 semanas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="mbar" id="mbar" aria-hidden="true">
+  <p id="mbar-txt">Tocá una reparación para armar tu consulta.</p>
+  <a class="btn btn-accent" id="mbar-btn" href="https://wa.me/5493515721212?text=Hola%20KFA%20Lab%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener" tabindex="-1">Consultar</a>
+</div>
+
+<section class="section" id="trabajos">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="rv">Pasaron por el banco.</h2>
+      <p class="rv">Equipos reparados en el laboratorio, fotografiados antes de volver a su dueño. También reparamos modelos anteriores, como el 7 Plus, el 8 Plus y el X. Consultanos.</p>
+    </div>
+  </div>
+  <div class="car" id="car" aria-roledescription="carrusel" aria-label="Trabajos del laboratorio">
+    <div class="car-track" id="car-track" tabindex="0">
+      <figure class="slide"><div class="slide-img"><img src="fotos/g-13-rosa.jpg" width="960" height="1200" loading="lazy" alt="iPhone 13 rosa en el laboratorio"></div><figcaption><strong>iPhone 13</strong> rosa</figcaption></figure>
+      <figure class="slide"><div class="slide-img"><img src="fotos/g-8plus-rojo.jpg" width="960" height="1200" loading="lazy" alt="iPhone 8 Plus rojo en la mesa de trabajo"></div><figcaption><strong>iPhone 8 Plus</strong> (PRODUCT)RED</figcaption></figure>
+      <figure class="slide"><div class="slide-img"><img src="fotos/g-x-abierto.jpg" width="960" height="1200" loading="lazy" alt="iPhone X abierto en el banco, con la pantalla levantada y las baterías a la vista"></div><figcaption><strong>iPhone X</strong> abierto</figcaption></figure>
+      <figure class="slide"><div class="slide-img"><img src="fotos/g-11-verde.jpg" width="960" height="1200" loading="lazy" alt="iPhone 11 verde bajo el microscopio"></div><figcaption><strong>iPhone 11</strong> verde</figcaption></figure>
+      <figure class="slide"><div class="slide-img"><img src="fotos/g-11pro-plata.jpg" width="960" height="1200" loading="lazy" alt="iPhone 11 Pro plata"></div><figcaption><strong>iPhone 11 Pro</strong> plata</figcaption></figure>
+      <figure class="slide"><div class="slide-img"><img src="fotos/g-13-perfil.jpg" width="960" height="1200" loading="lazy" alt="iPhone 13 rosa visto de costado"></div><figcaption><strong>iPhone 13</strong> de costado</figcaption></figure>
+      <figure class="slide"><div class="slide-img"><img src="fotos/g-7plus-dorado.jpg" width="960" height="1200" loading="lazy" alt="iPhone 7 Plus dorado"></div><figcaption><strong>iPhone 7 Plus</strong> dorado</figcaption></figure>
+      <figure class="slide"><div class="slide-img"><img src="fotos/g-13pro-abierto.jpg" width="960" height="1200" loading="lazy" alt="iPhone 13 Pro abierto en el banco, con la pantalla levantada y el chip A15 Bionic a la vista"></div><figcaption><strong>iPhone 13 Pro</strong> abierto</figcaption></figure>
+      <figure class="slide"><div class="slide-img"><img src="fotos/g-12-blanco.jpg" width="960" height="1200" loading="lazy" alt="iPhone 12 blanco bajo el microscopio"></div><figcaption><strong>iPhone 12</strong> blanco</figcaption></figure>
+      <figure class="slide"><div class="slide-img"><img src="fotos/g-x-trasera.jpg" width="960" height="1200" loading="lazy" alt="Parte trasera de un iPhone X gris espacial"></div><figcaption><strong>iPhone X</strong> gris espacial</figcaption></figure>
+      <figure class="slide"><div class="slide-img"><img src="fotos/g-8plus-frente.jpg" width="960" height="1200" loading="lazy" alt="Frente de un iPhone 8 Plus rojo"></div><figcaption><strong>iPhone 8 Plus</strong> de frente</figcaption></figure>
+      <figure class="slide"><div class="slide-img"><img src="fotos/g-11-frente.jpg" width="960" height="1200" loading="lazy" alt="Frente de un iPhone 11"></div><figcaption><strong>iPhone 11</strong> de frente</figcaption></figure>
+      <figure class="slide"><div class="slide-img"><img src="fotos/g-13-frente.jpg" width="960" height="1200" loading="lazy" alt="Frente de un iPhone 13 rosa"></div><figcaption><strong>iPhone 13</strong> de frente</figcaption></figure>
+      <figure class="slide"><div class="slide-img"><img src="fotos/g-11pro-frente.jpg" width="960" height="1200" loading="lazy" alt="Frente de un iPhone 11 Pro"></div><figcaption><strong>iPhone 11 Pro</strong> de frente</figcaption></figure>
+      <figure class="slide"><div class="slide-img"><img src="fotos/g-x-frente.jpg" width="960" height="1200" loading="lazy" alt="Frente de un iPhone X encendido"></div><figcaption><strong>iPhone X</strong> de frente</figcaption></figure>
+      <figure class="slide"><div class="slide-img"><img src="fotos/g-7plus-plata.jpg" width="960" height="1200" loading="lazy" alt="iPhone 7 Plus plata"></div><figcaption><strong>iPhone 7 Plus</strong> plata</figcaption></figure>
+      <figure class="slide"><div class="slide-img"><img src="fotos/g-7plus-frente.jpg" width="960" height="1200" loading="lazy" alt="Frente de un iPhone 7 Plus blanco"></div><figcaption><strong>iPhone 7 Plus</strong> de frente</figcaption></figure>
+    </div>
+    <div class="wrap car-ctrl">
+      <span class="car-count" id="car-count"><b>1</b> / 17</span>
+      <span class="car-bar" aria-hidden="true"><i id="car-bar"></i></span>
+      <div class="car-btns">
+        <button class="car-btn" id="car-prev" type="button" aria-label="Foto anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="car-btn" id="car-next" type="button" aria-label="Foto siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="laboratorio">
+  <div class="wrap lab-grid">
+    <div class="lab-photo rv">
+      <img src="fotos/p-banco-placa.jpg" width="960" height="1280" loading="lazy" alt="Banco de microsoldadura: microscopio RELIFE con cámara, multímetro, placa de iPhone en el soporte y el esquemático en pantalla">
+    </div>
+    <div class="lab-text">
+      <h2 class="rv">Placa a nivel de componente.</h2>
+      <p class="lead rv">Trabajamos con microscopio, esquemáticos y medición sobre la placa. Para Face ID y fallas de placa hacemos diagnóstico real, no solo cambio de piezas.</p>
+      <ul class="svc">
+        <li class="rv"><b>Pantallas</b><span>Incell, OLED y autoprogramables, según el modelo.</span></li>
+        <li class="rv"><b>Batería</b><span>Estándar o Diagnostic, para recuperar autonomía real.</span></li>
+        <li class="rv"><b>Placa y Face ID</b><span>Diagnóstico y microsoldadura. De 1 a 2 semanas.</span></li>
+        <li class="rv"><b>Cámaras</b><span>Frontal y trasera.</span></li>
+        <li class="rv"><b>Flex de carga</b><span>Cuando el equipo no carga o carga a medias.</span></li>
+        <li class="rv"><b>Parlantes</b><span>Sonido bajo, roto o sin audio.</span></li>
+        <li class="rv"><b>Tapa trasera</b><span>Vidrio o tapa completa con marco.</span></li>
+        <li class="rv"><b>Swap</b><span>Cara A o B, o swap full.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap placas">
+    <figure class="rv"><img src="fotos/p-sandwich.jpg" width="960" height="1200" loading="lazy" alt="Placa sándwich de iPhone separada, con una mitad en el soporte"><figcaption>Placa sándwich separada</figcaption></figure>
+    <figure class="rv"><img src="fotos/p-reballing.jpg" width="960" height="1200" loading="lazy" alt="Chip en el soporte de reballing con su stencil"><figcaption>Reballing de chip</figcaption></figure>
+    <figure class="rv"><img src="fotos/p-placas.jpg" width="960" height="1200" loading="lazy" alt="Tres placas de iPhone en la mesa de trabajo"><figcaption>Placas en diagnóstico</figcaption></figure>
+    <figure class="rv"><img src="fotos/p-placas-mesa.jpg" width="960" height="1200" loading="lazy" alt="Placas de iPhone bajo el microscopio"><figcaption>Bajo el microscopio</figcaption></figure>
+  </div>
+</section>
+
+<section class="section" id="repuestos">
+  <div class="wrap prog-grid">
+    <div class="prog-text">
+      <h2 class="rv">Repuestos programados.</h2>
+      <p class="lead rv">Cambiamos la batería o la pantalla y después la programamos con los datos del original, para que el iPhone no muestre el aviso de pieza no original en Ajustes.</p>
+      <ul class="prog-list">
+        <li class="rv"><b>Baterías</b><span>Ampsentrix Core, JCID y Nasan. Pasamos salud y ciclos para que la batería se lea bien.</span></li>
+        <li class="rv"><b>Pantallas</b><span>JK y Wuzip, Incell y OLED. Copiamos el True Tone del módulo original.</span></li>
+        <li class="rv"><b>Programadora JCID V1SE</b><span>Lee y escribe batería, pantalla y otros periféricos, del iPhone X al 15 Pro Max.</span></li>
+      </ul>
+      <p class="prog-note rv">Lo que se puede programar depende del modelo y de la pieza. Te lo confirmamos antes de hacer el trabajo.</p>
+    </div>
+    <div class="prog-photos">
+      <figure class="rv"><img src="fotos/g-programadora.jpg" width="960" height="1200" loading="lazy" alt="Programadora JCID V1SE con su placa de conectores, sobre la mesa de trabajo"><figcaption>Programadora JCID V1SE</figcaption></figure>
+      <figure class="rv"><img src="fotos/g-baterias.jpg" width="960" height="1200" loading="lazy" alt="Cajas de baterías Ampsentrix Core, JCID y Nasan"><figcaption>Baterías en stock</figcaption></figure>
+      <figure class="rv"><img src="fotos/g-pantallas.jpg" width="960" height="1200" loading="lazy" alt="Cajas de pantallas JK y Wuzip apiladas en el laboratorio"><figcaption>Pantallas JK y Wuzip</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="como">
+  <div class="wrap como-grid">
+   <div class="como-text">
+    <h2 class="rv">Antes de que lo traigas.</h2>
+    <div class="steps">
+      <div class="step rv">
+        <h3>Contanos la falla.</h3>
+        <p>Escribinos con el modelo y qué le pasa. Te decimos qué esperar antes de que vengas al local.</p>
+      </div>
+      <div class="step rv">
+        <h3>Repuesto confirmado.</h3>
+        <p>Lo conseguimos con mayoristas de Córdoba, el correcto para tu modelo.</p>
+      </div>
+      <div class="step rv">
+        <h3>Diagnóstico real.</h3>
+        <p>Medimos y revisamos el equipo antes de cotizar. Si es placa, la demora habitual es de 1 a 2 semanas.</p>
+      </div>
+    </div>
+   </div>
+    <div class="como-photo rv"><img src="fotos/lab-12-blanco.jpg" width="825" height="1100" loading="lazy" alt="iPhone 12 en el laboratorio, con la PC de trabajo y el microscopio de fondo"></div>
+  </div>
+</section>
+
+
+<section class="section" id="visitanos">
+  <div class="wrap visit-grid">
+    <div class="visit-text">
+      <h2 class="rv">Peñeñory 598, Malagueño.</h2>
+      <div class="facts rv">
+        <div><span>Horario</span>Lunes a viernes, de 9 a 20 h</div>
+        <div><span>WhatsApp</span><a class="js-contact" href="https://wa.me/5493515721212?text=Hola%20KFA%20Lab%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">351 572-1212</a></div>
+        <div><span>Instagram</span><a href="https://www.instagram.com/kfa.lab/" target="_blank" rel="noopener">@kfa.lab</a></div>
+      </div>
+      <div class="visit-actions rv">
+        <a class="btn btn-accent" href="https://www.google.com/maps/search/?api=1&query=Pe%C3%B1e%C3%B1ory%20598%2C%20Malague%C3%B1o%2C%20C%C3%B3rdoba" target="_blank" rel="noopener">Cómo llegar</a>
+        <a class="btn btn-light js-contact" href="https://wa.me/5493515721212?text=Hola%20KFA%20Lab%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">Escribinos</a>
+      </div>
+    </div>
+    <div class="visit-photo rv">
+      <img src="fotos/lab-12-frente.jpg" width="825" height="1100" loading="lazy" alt="El laboratorio de KFA Lab, con la PC de trabajo y el banco con el microscopio">
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="foot-mark" aria-hidden="true">KFA <span>Lab</span></p>
+    <div class="foot-line">
+      <span>© <span id="year">2026</span> KFA Lab · Reparación de iPhone en Malagueño, Córdoba</span>
+      <a class="js-contact" href="https://wa.me/5493515721212?text=Hola%20KFA%20Lab%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">WhatsApp 351 572-1212</a>
+      <a href="https://www.instagram.com/kfa.lab/" target="_blank" rel="noopener">@kfa.lab en Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ==== CONTACTO ====
+   Poné acá tu número de WhatsApp con código de país, sin + ni espacios (ej: 5493511234567).
+   Si queda vacío, los botones abren un mensaje directo de Instagram. */
+const WHATSAPP = '5493515721212';
+const IG_DM = 'https://ig.me/m/kfa.lab';
+function contactLink(msg){
+  return WHATSAPP ? 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(msg) : IG_DM;
+}
+const contactLabel = WHATSAPP ? 'Pedir presupuesto por WhatsApp' : 'Consultar por Instagram';
+document.querySelectorAll('.js-contact').forEach(a => {
+  a.href = contactLink('Hola KFA Lab, quiero hacer una consulta.');
+  if (WHATSAPP && a.classList.contains('btn')) a.textContent = 'Escribinos por WhatsApp';
+});
+
+/* ==== PRECIOS Y REPUESTOS (sin cambios) ==== */
+/* ==== FECHA DE LOS PRECIOS ====
+   Cambiala cada vez que actualices precios o repuestos (día/mes/año). */
+const PRECIOS_ACTUALIZADOS = '18/10/2026';
+document.getElementById('precios-fecha').textContent = PRECIOS_ACTUALIZADOS;
+
+/* Una línea de ayuda debajo de algunas reparaciones (posición en `categorias` → texto) */
+const AYUDA_REP = {
+  2: 'La opción más económica.',
+  3: 'Colores y brillo como la original.',
+  4: 'Solo para casos de IC ID roto. Calidad superior a las demás.',
+};
+
+const categorias = ["Batería","Diagnostic","Pantalla Incell","Pantalla OLED","Pantalla Autoprogramable","Flex de carga","Parlantes","Cámara frontal","Cámara trasera","Tapa trasera","Face ID (placa)","Reparación de placa","Swap Cara A o B","Swap Full"];
+
+  const modelos = [
+    ["iPhone X",         ["Consultar","Consultar","Consultar","Consultar","Consultar","Consultar","Consultar","Consultar","Consultar","Consultar","Consultar","Consultar","Consultar","Consultar"]],
+    ["iPhone XR",        [28,"No aplica",45,"No aplica","No aplica",33,33,33,28,33,40,65,"No aplica","No aplica"]],
+    ["iPhone XS",        [30,"No aplica",48,"No aplica","No aplica",33,33,33,30,33,42,68,"No aplica","No aplica"]],
+    ["iPhone XS Max",    [32,"No aplica",52,"No aplica","No aplica",33,33,33,32,33,44,72,"No aplica","No aplica"]],
+    ["iPhone 11",        [37,"No aplica",50,"No aplica","No aplica",40,35,35,36,37,50,80,100,160]],
+    ["iPhone 11 Pro",    [43,"No aplica",60,65,"No aplica",42,35,35,"Consultar",37,50,80,100,160]],
+    ["iPhone 11 Pro Max",[45,"No aplica",60,65,"No aplica",45,35,35,"Consultar",37,50,80,100,160]],
+    ["iPhone 12 mini",   [42,50,"Consultar","Consultar","No aplica",40,35,"Consultar",60,40,50,100,"Consultar","Consultar"]],
+    ["iPhone 12",        [44,44,60,70,"No aplica",42,40,45,47,40,50,100,120,180]],
+    ["iPhone 12 Pro",    [44,43,60,70,"No aplica",42,40,45,110,50,50,100,120,180]],
+    ["iPhone 12 Pro Max",[49,50,65,"Consultar","No aplica",45,"Consultar",50,110,60,50,100,120,180]],
+    ["iPhone 13 mini",   [39,55,78,"Consultar","No aplica",45,"Consultar",45,48,50,70,120,"Consultar","Consultar"]],
+    ["iPhone 13",        [37,52,65,75,90,47,40,45,48,50,70,120,140,200]],
+    ["iPhone 13 Pro",    [44,54,65,80,105,50,45,45,130,50,70,120,140,200]],
+    ["iPhone 13 Pro Max",[45,58,70,85,120,55,"Consultar",50,130,60,70,140,140,200]],
+    ["iPhone 14",        [45,53,75,90,100,45,"Consultar",65,83,55,100,140,140,210]],
+    ["iPhone 14 Plus",   [45,"Consultar",75,"Consultar","Consultar",45,"Consultar",67,88,"Consultar",100,140,140,210]],
+    ["iPhone 14 Pro",    [48,59,80,90,140,50,50,70,110,55,100,150,150,210]],
+    ["iPhone 14 Pro Max",[51,63,80,95,135,58,"Consultar",70,110,60,100,160,160,210]],
+    ["iPhone 15",        [55,65,85,100,185,55,"Consultar",70,63,65,110,150,150,250]],
+    ["iPhone 15 Plus",   [55,"Consultar","Consultar","Consultar","Consultar",52,"Consultar",70,70,"Consultar",110,150,150,250]],
+    ["iPhone 15 Pro",    [60,68,92,110,100,57,"Consultar",75,112,65,110,180,200,250]],
+    ["iPhone 15 Pro Max",[64,75,100,"Consultar",110,60,"Consultar",75,115,65,110,180,200,250]],
+    ["iPhone 16",        [65,"Consultar",130,150,170,60,"Consultar","Consultar",100,75,130,200,240,300]],
+    ["iPhone 16 Plus",   ["Consultar","Consultar",130,"Consultar","Consultar",60,"Consultar","Consultar",130,75,130,200,"Consultar","Consultar"]],
+    ["iPhone 16 Pro",    ["Consultar","Consultar",140,160,210,65,"Consultar",69,125,80,130,230,250,300]],
+    ["iPhone 16 Pro Max",[75,"Consultar",150,170,200,70,"Consultar",80,125,85,130,240,270,300]]
+  ];
+
+  /* ---- repuestos de pantallas (Mundo Parts, en pesos argentinos) ---- */
+  /* Incell: preferido JK, si no Ampsentrix, si no Incell simple. OLED: preferido DD, si no alternativa disponible. Autoprogramable: preferido JCID, si no DD. null = sin dato del mayorista. */
+  const repuestosPantallas = [
+    {incell:null, oled:null, auto:null}, // iPhone X
+    {incell:{p:35000, brand:'jk'}, oled:null, auto:null}, // iPhone XR
+    {incell:{p:34800, brand:'jk'}, oled:null, auto:null}, // iPhone XS
+    {incell:null, oled:null, auto:null}, // iPhone XS Max
+    {incell:{p:36500, brand:'jk'}, oled:null, auto:null}, // iPhone 11
+    {incell:{p:29500, brand:null}, oled:{p:60000, brand:'dd'}, auto:null}, // iPhone 11 Pro
+    {incell:{p:41500, brand:'jk'}, oled:null, auto:null}, // iPhone 11 Pro Max
+    {incell:null, oled:null, auto:null}, // iPhone 12 mini
+    {incell:{p:41500, brand:'jk'}, oled:{p:75000, brand:'dd'}, auto:null}, // iPhone 12
+    {incell:{p:41500, brand:'jk'}, oled:{p:75000, brand:'dd'}, auto:null}, // iPhone 12 Pro
+    {incell:{p:55000, brand:'jk'}, oled:null, auto:null}, // iPhone 12 Pro Max
+    {incell:{p:39500, brand:null}, oled:null, auto:null}, // iPhone 13 mini
+    {incell:{p:49000, brand:'jk'}, oled:{p:94000, brand:'dd'}, auto:{p:138000, brand:'jcid'}}, // iPhone 13
+    {incell:{p:54500, brand:null}, oled:{p:105000, brand:'dd'}, auto:{p:158000, brand:'jcid'}}, // iPhone 13 Pro
+    {incell:{p:52500, brand:null}, oled:{p:105000, brand:'dd'}, auto:{p:180000, brand:'jcid'}}, // iPhone 13 Pro Max
+    {incell:{p:75500, brand:null}, oled:{p:96000, brand:'dd'}, auto:{p:150000, brand:'jcid'}}, // iPhone 14
+    {incell:{p:49000, brand:null}, oled:null, auto:null}, // iPhone 14 Plus
+    {incell:{p:59500, brand:null}, oled:{p:105000, brand:'dd'}, auto:{p:215000, brand:'jcid'}}, // iPhone 14 Pro
+    {incell:{p:51500, brand:null}, oled:{p:112000, brand:'dd'}, auto:{p:205000, brand:'jcid'}}, // iPhone 14 Pro Max
+    {incell:{p:49500, brand:null}, oled:{p:135000, brand:'jcid'}, auto:{p:280000, brand:'jcid'}}, // iPhone 15
+    {incell:null, oled:null, auto:null}, // iPhone 15 Plus
+    {incell:{p:69500, brand:null}, oled:null, auto:{p:145000, brand:'dd'}}, // iPhone 15 Pro
+    {incell:{p:72500, brand:null}, oled:{p:221500, brand:'jcid'}, auto:{p:266800, brand:'jcid'}}, // iPhone 15 Pro Max
+    {incell:{p:69500, brand:null}, oled:{p:188000, brand:'jcid'}, auto:null}, // iPhone 16
+    {incell:{p:82500, brand:'jk'}, oled:null, auto:null}, // iPhone 16 Plus
+    {incell:{p:119500, brand:'jk'}, oled:{p:215000, brand:'jcid'}, auto:{p:320000, brand:'jcid'}}, // iPhone 16 Pro
+    {incell:{p:205000, brand:null}, oled:{p:362500, brand:'ampsentrix'}, auto:{p:305000, brand:'jcid'}}, // iPhone 16 Pro Max
+  ];
+  function formatARS(n) {
+    return '$' + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+
+  /* ---- repuestos de baterías (Mundo Parts, en pesos argentinos) ---- */
+  /* "Diagnostic" = variantes Auto-Programable (pasan el diagnóstico de salud de batería sin marcar Service). "Batería" = el resto de las marcas/variantes, se listan todas las que ofrece el mayorista. */
+  const repuestosBaterias = [
+    {bateria:[], diagnostic:[]}, // iPhone X
+    {bateria:[{m:'Foxconn',p:15500}], diagnostic:[]}, // iPhone XR
+    {bateria:[{m:'Ampsentrix',p:20500}, {m:'Core Nasan',p:21500}, {m:'FoxConn',p:15500}, {m:'Gold E S/Flex',p:22900}], diagnostic:[]}, // iPhone XS
+    {bateria:[{m:'Ampsentrix',p:20500}, {m:'FoxConn',p:18500}, {m:'I-BOX',p:28500}], diagnostic:[]}, // iPhone XS Max
+    {bateria:[{m:'Ampsentrix Core',p:24500}, {m:'FoxConn',p:14000}], diagnostic:[]}, // iPhone 11
+    {bateria:[{m:'Ampsentrix Core',p:29500}, {m:'FoxConn',p:17500}, {m:'FoxConn S/ Flex',p:14500}], diagnostic:[]}, // iPhone 11 Pro
+    {bateria:[{m:'Ampsentrix Core',p:33500}, {m:'FoxConn',p:18000}, {m:'Foxconn S/ Flex',p:17000}], diagnostic:[]}, // iPhone 11 Pro Max
+    {bateria:[{m:'Ampsentrix Core',p:24000}], diagnostic:[{m:'AmpSentrix Plus (AutoProgramable)',p:33000}]}, // iPhone 12 mini
+    {bateria:[{m:'AmpSentrix Core',p:24500}, {m:'FoxConn',p:18000}, {m:'FoxConn S/ Flex',p:17000}, {m:'JCID S/Flex',p:17000}], diagnostic:[]}, // iPhone 12
+    {bateria:[{m:'AmpSentrix Core',p:24500}, {m:'FoxConn',p:18000}, {m:'FoxConn S/ Flex',p:17000}, {m:'JCID S/Flex',p:17000}], diagnostic:[]}, // iPhone 12 Pro
+    {bateria:[{m:'Ampsentrix',p:25500}, {m:'Ampsentrix Core',p:32500}, {m:'Core I-BOX',p:24500}, {m:'Extremus S/Flex',p:21500}, {m:'FoxConn',p:18000}, {m:'Gold E S/Flex',p:24500}], diagnostic:[{m:'AmpSentrix Plus (AutoProgramable)',p:48500}]}, // iPhone 12 Pro Max
+    {bateria:[{m:'AmpSentrix Core',p:24000}], diagnostic:[{m:'AmpSentrix Plus (AutoProgramable)',p:36000}, {m:'JCID Auto-Programable',p:38900}]}, // iPhone 13 mini
+    {bateria:[{m:'AmpSentrix Core',p:28000}, {m:'FoxConn',p:19500}, {m:'FoxConn S/ Flex',p:17500}, {m:'JCID',p:29500}, {m:'JCID S/Flex',p:17500}], diagnostic:[{m:'AmpSentrix Plus (AutoProgramable)',p:39000}]}, // iPhone 13
+    {bateria:[{m:'Calisoon C/Flex',p:21000}, {m:'FoxConn',p:21000}, {m:'FoxConn S/ Flex',p:17500}, {m:'JCID',p:29500}, {m:'JCID S/Flex',p:17500}], diagnostic:[]}, // iPhone 13 Pro
+    {bateria:[{m:'AmpSentrix Core',p:38500}, {m:'Calisoon C/Flex',p:21000}, {m:'Core I-BOX',p:49500}, {m:'Foxconn',p:22500}, {m:'Foxconn S/Flex',p:19500}, {m:'JCID S/Flex',p:23500}], diagnostic:[]}, // iPhone 13 Pro Max
+    {bateria:[{m:'AmpSentrix Core',p:29500}, {m:'Calisoon C/Flex',p:21000}, {m:'FoxConn',p:18500}, {m:'FoxConn S/ Flex',p:17000}, {m:'JCID',p:29500}], diagnostic:[{m:'AmpSentrix Plus (AutoProgramable)',p:41500}]}, // iPhone 14
+    {bateria:[{m:'FoxConn',p:18000}, {m:'JCID',p:29500}], diagnostic:[]}, // iPhone 14 Plus
+    {bateria:[{m:'FoxConn',p:20000}], diagnostic:[]}, // iPhone 14 Pro
+    {bateria:[{m:'AmpSentrix Core',p:38000}, {m:'AmpSentrix Core (Extra)',p:42500}, {m:'Calisoon C/Flex',p:29000}, {m:'FoxConn',p:22000}, {m:'FoxConn S/ Flex',p:20500}], diagnostic:[{m:'AmpSentrix Plus (AutoProgramable)',p:54500}]}, // iPhone 14 Pro Max
+    {bateria:[{m:'Ampsentrix Core',p:33500}, {m:'Ampsentrix Pro',p:69500}, {m:'Core I-BOX',p:34500}, {m:'Foxconn S/ Flex',p:18500}, {m:'JCID',p:31500}], diagnostic:[{m:'AmpSentrix Plus (AutoProgramable)',p:43500}]}, // iPhone 15
+    {bateria:[{m:'JCID',p:33500}], diagnostic:[]}, // iPhone 15 Plus
+    {bateria:[{m:'Ampsentrix Core',p:39000}, {m:'Core I-BOX',p:44000}, {m:'Foxconn S/ Flex',p:19500}], diagnostic:[{m:'AmpSentrix Plus (AutoProgramable)',p:48500}]}, // iPhone 15 Pro
+    {bateria:[{m:'Ampsentrix Pro',p:91500}, {m:'Core I-BOX',p:38000}], diagnostic:[{m:'AmpSentrix Plus (AutoProgramable)',p:58000}]}, // iPhone 15 Pro Max
+    {bateria:[{m:'Ampsentrix Basic',p:39500}], diagnostic:[]}, // iPhone 16
+    {bateria:[], diagnostic:[]}, // iPhone 16 Plus
+    {bateria:[], diagnostic:[]}, // iPhone 16 Pro
+    {bateria:[{m:'Ampsentrix Basic',p:54500}], diagnostic:[]}, // iPhone 16 Pro Max
+  ];
+
+  /* ---- repuestos de placa/flex de carga (Mundo Parts, en pesos argentinos) ---- */
+  /* Mundo Parts lo vende como "Placa de Carga". null = sin dato del mayorista. */
+  const repuestosFlexCarga = [
+    null,  // iPhone X
+    6000,  // iPhone XR
+    7000,  // iPhone XS
+    8500,  // iPhone XS Max
+    null,  // iPhone 11
+    9000,  // iPhone 11 Pro
+    9000,  // iPhone 11 Pro Max
+    11500, // iPhone 12 mini
+    11500, // iPhone 12 (comparte con 12 Pro)
+    11500, // iPhone 12 Pro (comparte con 12)
+    14000, // iPhone 12 Pro Max
+    14500, // iPhone 13 mini
+    14500, // iPhone 13
+    17400, // iPhone 13 Pro
+    18900, // iPhone 13 Pro Max
+    14200, // iPhone 14
+    17400, // iPhone 14 Plus
+    17400, // iPhone 14 Pro
+    19500, // iPhone 14 Pro Max
+    22900, // iPhone 15
+    19500, // iPhone 15 Plus
+    19500, // iPhone 15 Pro
+    47000, // iPhone 15 Pro Max
+    30000, // iPhone 16
+    31500, // iPhone 16 Plus
+    18500, // iPhone 16 Pro
+    18500, // iPhone 16 Pro Max
+  ];
+
+  /* ---- repuestos de tapa trasera (Mundo Parts, en pesos argentinos) ---- */
+  /* Se usa siempre la opción más cara disponible (tapa completa con marco cuando existe, si no el vidrio solo). */
+  const repuestosTapas = [
+    null,  // iPhone X
+    5800,  // iPhone XR
+    6000,  // iPhone XS
+    6000,  // iPhone XS Max
+    6800,  // iPhone 11
+    6800,  // iPhone 11 Pro
+    6800,  // iPhone 11 Pro Max
+    7200,  // iPhone 12 mini
+    7200,  // iPhone 12
+    8000,  // iPhone 12 Pro
+    8500,  // iPhone 12 Pro Max
+    8500,  // iPhone 13 mini
+    8500,  // iPhone 13
+    8500,  // iPhone 13 Pro
+    8500,  // iPhone 13 Pro Max
+    18000, // iPhone 14 (tapa completa)
+    18000, // iPhone 14 Plus (tapa completa)
+    9500,  // iPhone 14 Pro
+    9500,  // iPhone 14 Pro Max
+    19000, // iPhone 15 (tapa completa)
+    8500,  // iPhone 15 Plus
+    21000, // iPhone 15 Pro (tapa completa)
+    21000, // iPhone 15 Pro Max (tapa completa)
+    28000, // iPhone 16 (tapa completa)
+    30500, // iPhone 16 Plus (tapa completa)
+    30500, // iPhone 16 Pro (tapa completa)
+    30500, // iPhone 16 Pro Max (tapa completa)
+  ];
+
+  /* ---- repuestos de parlante/altavoz (Mundo Parts, en pesos argentinos) ---- */
+  /* Cobertura parcial: Mundo Parts no lista todos los modelos en esta categoría. */
+  const repuestosParlantes = [
+    null,  // iPhone X
+    4000,  // iPhone XR
+    null,  // iPhone XS
+    4000,  // iPhone XS Max
+    8000,  // iPhone 11
+    4000,  // iPhone 11 Pro
+    null,  // iPhone 11 Pro Max
+    null,  // iPhone 12 mini
+    9000,  // iPhone 12 (comparte con 12 Pro)
+    9000,  // iPhone 12 Pro (comparte con 12)
+    null,  // iPhone 12 Pro Max
+    null,  // iPhone 13 mini
+    12500, // iPhone 13
+    12500, // iPhone 13 Pro
+    null,  // iPhone 13 Pro Max
+    null,  // iPhone 14
+    null,  // iPhone 14 Plus
+    16000, // iPhone 14 Pro
+    null,  // iPhone 14 Pro Max
+    null,  // iPhone 15
+    null,  // iPhone 15 Plus
+    null,  // iPhone 15 Pro
+    null,  // iPhone 15 Pro Max
+    null,  // iPhone 16
+    null,  // iPhone 16 Plus
+    null,  // iPhone 16 Pro
+    null,  // iPhone 16 Pro Max
+  ];
+
+  /* ---- repuestos de cámara frontal (Mundo Parts, en pesos argentinos) ---- */
+  /* Cobertura parcial: Mundo Parts no lista todos los modelos en esta categoría. */
+  const repuestosCamaraFrontal = [
+    null,  // iPhone X
+    null,   // iPhone XR
+    16500,  // iPhone XS
+    16500,  // iPhone XS Max
+    14500,  // iPhone 11
+    16500,  // iPhone 11 Pro
+    19000,  // iPhone 11 Pro Max
+    null,   // iPhone 12 mini
+    null,   // iPhone 12
+    19000,  // iPhone 12 Pro
+    19000,  // iPhone 12 Pro Max
+    null,   // iPhone 13 mini
+    19000,  // iPhone 13
+    19000,  // iPhone 13 Pro
+    19000,  // iPhone 13 Pro Max
+    45500,  // iPhone 14
+    null,   // iPhone 14 Plus
+    null,   // iPhone 14 Pro
+    null,   // iPhone 14 Pro Max
+    42500,  // iPhone 15
+    null,   // iPhone 15 Plus
+    null,   // iPhone 15 Pro
+    null,   // iPhone 15 Pro Max
+    null,   // iPhone 16
+    null,   // iPhone 16 Plus
+    null,   // iPhone 16 Pro
+    187500, // iPhone 16 Pro Max
+  ];
+
+  /* ---- specs y silueta del equipo (solo referencia técnica, no fotos reales) ---- */
+  const specs = [
+    {year:2017, chip:"A11 Bionic", screen:'5.8" Super Retina', style:"home", cams:2},
+    {year:2018, chip:"A12 Bionic", screen:'6.1" Liquid Retina', style:"home", cams:1},
+    {year:2018, chip:"A12 Bionic", screen:'5.8" Super Retina', style:"home", cams:2},
+    {year:2018, chip:"A12 Bionic", screen:'6.5" Super Retina', style:"home", cams:2},
+    {year:2019, chip:"A13 Bionic", screen:'6.1" Liquid Retina', style:"notch", cams:2},
+    {year:2019, chip:"A13 Bionic", screen:'5.8" Super Retina XDR', style:"notch", cams:3},
+    {year:2019, chip:"A13 Bionic", screen:'6.5" Super Retina XDR', style:"notch", cams:3},
+    {year:2020, chip:"A14 Bionic", screen:'5.4" Super Retina XDR', style:"notch", cams:2},
+    {year:2020, chip:"A14 Bionic", screen:'6.1" Super Retina XDR', style:"notch", cams:2},
+    {year:2020, chip:"A14 Bionic", screen:'6.1" Super Retina XDR', style:"notch", cams:3},
+    {year:2020, chip:"A14 Bionic", screen:'6.7" Super Retina XDR', style:"notch", cams:3},
+    {year:2021, chip:"A15 Bionic", screen:'5.4" Super Retina XDR', style:"notch", cams:2},
+    {year:2021, chip:"A15 Bionic", screen:'6.1" Super Retina XDR', style:"notch", cams:2},
+    {year:2021, chip:"A15 Bionic", screen:'6.1" Super Retina XDR ProMotion', style:"notch", cams:3},
+    {year:2021, chip:"A15 Bionic", screen:'6.7" Super Retina XDR ProMotion', style:"notch", cams:3},
+    {year:2022, chip:"A15 Bionic", screen:'6.1" Super Retina XDR', style:"notch", cams:2},
+    {year:2022, chip:"A15 Bionic", screen:'6.7" Super Retina XDR', style:"notch", cams:2},
+    {year:2022, chip:"A16 Bionic", screen:'6.1" Super Retina XDR ProMotion', style:"island", cams:3},
+    {year:2022, chip:"A16 Bionic", screen:'6.7" Super Retina XDR ProMotion', style:"island", cams:3},
+    {year:2023, chip:"A16 Bionic", screen:'6.1" Super Retina XDR', style:"island", cams:2},
+    {year:2023, chip:"A16 Bionic", screen:'6.7" Super Retina XDR', style:"island", cams:2},
+    {year:2023, chip:"A17 Pro", screen:'6.1" Super Retina XDR ProMotion', style:"island", cams:3},
+    {year:2023, chip:"A17 Pro", screen:'6.7" Super Retina XDR ProMotion', style:"island", cams:3},
+    {year:2024, chip:"A18", screen:'6.1" Super Retina XDR', style:"island", cams:2},
+    {year:2024, chip:"A18", screen:'6.7" Super Retina XDR', style:"island", cams:2},
+    {year:2024, chip:"A18 Pro", screen:'6.3" Super Retina XDR ProMotion', style:"island", cams:3},
+    {year:2024, chip:"A18 Pro", screen:'6.9" Super Retina XDR ProMotion', style:"island", cams:3}
+  ];
+
+/* ==== FOTOS REALES POR MODELO (índice = posición en la lista de modelos) ==== */
+const fotosDispositivo = modelos.map(() => []);
+fotosDispositivo[0] = ['fotos/x-abierto.jpg', 'fotos/x-frente.jpg'];
+fotosDispositivo[1] = ['data:image/jpeg;base64,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'];
+fotosDispositivo[4] = ['fotos/11-verde-microscopio.jpg', 'fotos/11-verde-frente.jpg'];
+fotosDispositivo[5] = ['fotos/11pro-plata.jpg', 'fotos/11pro-frente.jpg'];
+fotosDispositivo[8] = ['fotos/12-blanco-microscopio.jpg', 'fotos/lab-12-blanco.jpg'];
+fotosDispositivo[12] = ['fotos/13-rosa-banco.jpg', 'fotos/13-rosa-frente.jpg'];
+fotosDispositivo[13] = ['fotos/13pro-abierto.jpg'];
+
+const select = document.getElementById('model-select');
+/* Arranca sin modelo elegido, y los 27 modelos van agrupados por generación */
+(function(){
+  const ph = document.createElement('option');
+  ph.value = ''; ph.textContent = 'Elegí tu modelo'; ph.disabled = true; ph.selected = true;
+  select.appendChild(ph);
+  const grupos = {};
+  modelos.forEach(([nombre], i) => {
+    const gen = /iPhone X/.test(nombre) ? 'iPhone X, XR y XS' : 'iPhone ' + nombre.match(/iPhone (\d+)/)[1];
+    if (!grupos[gen]) { grupos[gen] = document.createElement('optgroup'); grupos[gen].label = gen; select.appendChild(grupos[gen]); }
+    const opt = document.createElement('option');
+    opt.value = i; opt.textContent = nombre; grupos[gen].appendChild(opt);
+  });
+})();
+
+const REPUESTO_KEY_BY_CATEGORIA = {2:'incell', 3:'oled', 4:'auto'};
+let current = null, picked = null;
+
+const BRAND_NAMES = {jk:'JK', dd:'DD', ampsentrix:'Ampsentrix', jcid:'JCID'};
+/* Reparaciones que llevan repuesto (batería a tapa trasera). Face ID, placa y swaps no muestran línea de repuesto. */
+const LLEVA_REPUESTO = [0,1,2,3,4,5,6,7,8,9];
+const TRABAJO_LAB = [10,11];
+
+/* Repuestos de una reparación para un modelo: [{m: marca o null, p: precio ARS, brand: clave de logo o null}] */
+function repuestosDe(i, j){
+  const rk = REPUESTO_KEY_BY_CATEGORIA[j];
+  if (rk) { const rp = repuestosPantallas[i]; return rp && rp[rk] ? [{m:null, p:rp[rk].p, brand:rp[rk].brand}] : []; }
+  if (j === 0 || j === 1) { const b = repuestosBaterias[i]; return b ? b[j === 0 ? 'bateria' : 'diagnostic'].map(o => ({m:o.m, p:o.p, brand:null})) : []; }
+  const simple = {5: repuestosFlexCarga, 6: repuestosParlantes, 7: repuestosCamaraFrontal, 9: repuestosTapas}[j];
+  return simple && simple[i] != null ? [{m:null, p:simple[i], brand:null}] : [];
+}
+
+/* Texto corto del repuesto: "$41.500", "desde $15.500" o "a confirmar" */
+function repuestoTexto(reps){
+  if (!reps.length) return 'a confirmar';
+  if (reps.length === 1) return formatARS(reps[0].p);
+  return 'desde ' + formatARS(Math.min(...reps.map(r => r.p)));
+}
+
+/* La lista se arma por familias, como piensa el cliente, no como lista de piezas.
+   Los números son las posiciones en `categorias` y en cada fila de `modelos`. */
+const DIAG = -1; /* fila "no prende / no sé qué tiene": sin precio, se revisa y se presupuesta */
+const FAMILIAS = [
+  {nombre:'Pantalla',        items:[[2,'Incell'], [3,'OLED'], [4,'Autoprogramable']]},
+  {nombre:'Batería',         items:[[0,'Estándar'], [1,'Diagnostic']]},
+  {nombre:'Carga y sonido',  items:[[5,'Flex de carga'], [6,'Parlantes']]},
+  {nombre:'Cámaras',         items:[[7,'Frontal'], [8,'Trasera']]},
+  {nombre:'Placa y Face ID', items:[[10,'Face ID'], [11,'Reparación de placa']]},
+  {nombre:'Carcasa y swap',  items:[[9,'Tapa trasera'], [12,'Swap cara A o B'], [13,'Swap full']]},
+];
+/* Mano de obra más baja de una reparación entre todos los modelos (null si ninguno tiene precio) */
+function desdeUSD(j){
+  const nums = modelos.map(m => m[1][j]).filter(v => typeof v === 'number');
+  return nums.length ? Math.min(...nums) : null;
+}
+function nombreRep(j){ return j === DIAG ? 'No prende / no sé qué tiene' : categorias[j]; }
+let aviso = null; /* se muestra cuando un cambio de modelo borra la reparación elegida */
+
+function renderTable(i){
+  const table = document.getElementById('price-table');
+  table.innerHTML = '';
+  const head = document.createElement('thead');
+  head.innerHTML = '<tr><th scope="col">Reparación</th><th scope="col">' + (i === null ? 'Mano de obra desde' : 'Mano de obra + repuesto') + '</th></tr>';
+  table.appendChild(head);
+
+  const diag = document.createElement('tbody');
+  filaRep(diag, i, DIAG, nombreRep(DIAG));
+  table.appendChild(diag);
+
+  FAMILIAS.forEach(f => {
+    const body = document.createElement('tbody');
+    const g = document.createElement('tr'); g.className = 'grp';
+    const gh = document.createElement('th'); gh.colSpan = 2; gh.scope = 'rowgroup'; gh.textContent = f.nombre;
+    g.appendChild(gh); body.appendChild(g);
+    /* las reparaciones que el modelo no tiene no se muestran */
+    const visibles = f.items.filter(([j, label]) => filaRep(body, i, j, label)).length;
+    if (visibles) table.appendChild(body);
+  });
+}
+
+/* Agrega la fila de una reparación; devuelve false si no aplica a ese modelo */
+function filaRep(body, i, j, label){
+  const val = j === DIAG ? DIAG : (i === null ? null : modelos[i][1][j]);
+  if (val === 'No aplica') return false;
+  const tr = document.createElement('tr');
+  const th = document.createElement('th'); th.scope = 'row';
+  const td = document.createElement('td');
+  const main = document.createElement('span'); main.className = 'v-main';
+  if (val === DIAG) main.textContent = 'Lo revisamos';
+  else if (val === null) {
+    /* sin modelo: el piso de mano de obra entre todos los modelos, así ya hay una idea del precio */
+    const min = desdeUSD(j);
+    if (min === null) { main.textContent = 'A consultar'; main.classList.add('v-soft'); }
+    else { const f = document.createElement('span'); f.className = 'v-from'; f.textContent = 'desde'; main.append(f, 'U$D ' + min); }
+  }
+  else if (val === 'Consultar') { main.textContent = 'A consultar'; main.classList.add('v-soft'); }
+  else { main.textContent = 'U$D ' + val; }
+  td.appendChild(main);
+
+  if (val === DIAG) {
+    const s = document.createElement('span'); s.className = 'v-sub';
+    s.textContent = 'y te pasamos presupuesto';
+    td.appendChild(s);
+  } else if (val === null) {
+    /* sin modelo: solo nombres de reparación, se pueden elegir igual */
+  } else if (LLEVA_REPUESTO.includes(j)) {
+    const reps = repuestosDe(i, j);
+    const s = document.createElement('span'); s.className = 'v-sub v-part';
+    if (!reps.length) {
+      s.append('+ repuesto');
+      const t = document.createElement('span'); t.className = 'v-tbd v-nw'; t.textContent = 'a confirmar';
+      s.appendChild(t);
+    } else {
+      const pr = document.createElement('span'); pr.className = 'v-nw'; pr.textContent = repuestoTexto(reps);
+      s.append('+ repuesto', pr);
+      if (reps.length === 1 && reps[0].brand) { const b = document.createElement('span'); b.className = 'brand-tag'; b.textContent = BRAND_NAMES[reps[0].brand] || reps[0].brand; s.appendChild(b); }
+    }
+    td.appendChild(s);
+    if (reps.length > 1) {
+      const d = document.createElement('details'); d.className = 'v-more';
+      const sm = document.createElement('summary'); sm.textContent = 'Ver las ' + reps.length + ' marcas';
+      const ul = document.createElement('ul');
+      reps.forEach(r => {
+        const li = document.createElement('li'); li.append(r.m + ': ');
+        const p = document.createElement('span'); p.className = 'v-nw'; p.textContent = formatARS(r.p);
+        li.appendChild(p); ul.appendChild(li);
+      });
+      d.append(sm, ul);
+      d.addEventListener('click', e => e.stopPropagation());
+      td.appendChild(d);
+    }
+  } else if (TRABAJO_LAB.includes(j)) {
+    const s = document.createElement('span'); s.className = 'v-sub';
+    s.innerHTML = 'Laboratorio · <span class="v-nw">1 a 2 semanas</span>';
+    td.appendChild(s);
+  }
+
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  const lab = document.createElement('span'); lab.className = 'pt-label'; lab.textContent = label;
+  if (AYUDA_REP[j]) { const h = document.createElement('small'); h.textContent = AYUDA_REP[j]; lab.appendChild(h); }
+  btn.appendChild(lab);
+  if (label !== nombreRep(j)) btn.setAttribute('aria-label', nombreRep(j));
+  btn.setAttribute('aria-pressed', picked === j ? 'true' : 'false');
+  th.appendChild(btn);
+  tr.classList.add('pickable');
+  if (j === DIAG) tr.classList.add('diag');
+  if (picked === j) tr.classList.add('is-picked');
+  tr.addEventListener('click', () => pick(j));
+  tr.appendChild(th); tr.appendChild(td); body.appendChild(tr);
+  return true;
+}
+
+/* "U$D 44 de mano de obra + repuesto $41.500", o "a consultar" */
+function precioTexto(i, j, corto){
+  if (j === DIAG) return 'te lo revisamos y te pasamos presupuesto';
+  const val = modelos[i][1][j];
+  if (typeof val !== 'number') return 'a consultar';
+  let t = 'U$D ' + val + (corto ? '' : ' de mano de obra');
+  if (LLEVA_REPUESTO.includes(j)) t += ' + repuesto ' + repuestoTexto(repuestosDe(i, j));
+  return t;
+}
+function nombreEnMensaje(j){
+  if (j === 1) return 'batería Diagnostic';
+  if (j === 10) return 'Face ID (placa)';
+  const c = categorias[j];
+  return c.charAt(0).toLowerCase() + c.slice(1);
+}
+
+function updateOrder(){
+  const pickEl = document.getElementById('order-pick');
+  const btn = document.getElementById('order-btn');
+  const mt = document.getElementById('mbar-txt');
+  const mb = document.getElementById('mbar-btn');
+  syncBar();
+  if (current === null) {
+    /* sin modelo no se arma la consulta: el botón lleva al selector */
+    if (picked === null) pickEl.textContent = 'Elegí tu modelo arriba y tocá una reparación para armar tu consulta.';
+    else {
+      pickEl.innerHTML = '';
+      const s0 = document.createElement('strong'); s0.textContent = nombreRep(picked);
+      pickEl.append(s0, '. Ahora elegí tu modelo arriba para ver el precio.');
+    }
+    btn.href = '#precios'; btn.removeAttribute('target'); btn.textContent = 'Elegí tu modelo';
+    mt.innerHTML = '';
+    if (picked === null) mt.textContent = 'Elegí tu modelo para ver precios.';
+    else { const s3 = document.createElement('strong'); s3.textContent = nombreRep(picked); mt.append(s3, ' · falta elegir el modelo'); }
+    mb.href = '#precios'; mb.removeAttribute('target'); mb.textContent = 'Elegir modelo';
+    return;
+  }
+  btn.target = '_blank'; mb.target = '_blank';
+  const model = modelos[current][0];
+  let msg;
+  if (picked === null) {
+    pickEl.textContent = aviso || 'Tocá una reparación de la lista para armar tu consulta.';
+    msg = 'Hola KFA Lab, quiero consultar por mi ' + model + '.';
+  } else {
+    const precio = precioTexto(current, picked);
+    pickEl.innerHTML = '';
+    pickEl.append('Tu consulta: ');
+    const s = document.createElement('strong'); s.textContent = nombreRep(picked);
+    pickEl.append(s, ' · ' + model + '. ' + precio.charAt(0).toUpperCase() + precio.slice(1) + '.');
+    if (picked === DIAG) msg = 'Hola KFA Lab, mi ' + model + ' no prende o no sé qué tiene. ¿Me lo pueden revisar?';
+    else if (precio === 'a consultar') msg = 'Hola KFA Lab, quiero presupuesto de ' + nombreEnMensaje(picked) + ' para mi ' + model + '. En la web figura a consultar, ¿me pasan el precio?';
+    else msg = 'Hola KFA Lab, quiero presupuesto de ' + nombreEnMensaje(picked) + ' para mi ' + model + '. En la web figura: ' + precio + '.';
+  }
+  btn.href = contactLink(msg);
+  btn.textContent = contactLabel;
+  mt.innerHTML = '';
+  if (picked === null) { mt.textContent = aviso || (model + ': tocá una reparación.'); }
+  else {
+    const s2 = document.createElement('strong'); s2.textContent = nombreRep(picked);
+    const p2 = document.createElement('span'); p2.className = 'mbar-price'; p2.textContent = precioTexto(current, picked, true);
+    mt.append(s2, ' · ' + model, p2);
+  }
+  mb.href = btn.href; mb.textContent = WHATSAPP ? 'Pedir por WhatsApp' : 'Consultar';
+}
+
+/* Barra del pedido en celular: aparece con la tabla en pantalla y, una vez elegida
+   una reparación, queda fija en toda la página hasta enviarla o destildarla. */
+let tablaVisible = false;
+function syncBar(){
+  const bar = document.getElementById('mbar');
+  const on = tablaVisible || picked !== null;
+  bar.classList.toggle('on', on);
+  bar.setAttribute('aria-hidden', on ? 'false' : 'true');
+  document.getElementById('mbar-btn').tabIndex = on ? 0 : -1;
+  document.body.classList.toggle('has-pick', picked !== null);
+}
+(function(){
+  if (!('IntersectionObserver' in window)) { tablaVisible = true; syncBar(); return; }
+  new IntersectionObserver(es => es.forEach(e => { tablaVisible = e.isIntersecting; syncBar(); }), {threshold: 0})
+    .observe(document.getElementById('price-table'));
+})();
+
+function pick(j){
+  aviso = null;
+  picked = (picked === j) ? null : j;
+  renderTable(current); updateOrder();
+}
+
+let rot = null, rotGen = 0;
+function renderDevice(i){
+  const img = document.getElementById('device-photo');
+  const sil = document.getElementById('device-sil');
+  const cap = document.getElementById('device-cap');
+  const nameEl = document.getElementById('device-name');
+  if (rot) { clearInterval(rot); rot = null; }
+  const gen = ++rotGen;
+  if (i === null) {
+    img.hidden = true; cap.hidden = true; sil.hidden = false;
+    document.getElementById('sil').className = 'sil island';
+    nameEl.textContent = 'Elegí tu modelo'; nameEl.classList.add('is-empty');
+    document.querySelector('.device').classList.add('is-empty');
+    document.getElementById('device-spec').textContent = 'Si no sabés cuál es, fijate en Ajustes › General › Información.';
+    return;
+  }
+  nameEl.classList.remove('is-empty');
+  document.querySelector('.device').classList.remove('is-empty');
+  const s = specs[i];
+  const fotos = fotosDispositivo[i] || [];
+  if (fotos.length) {
+    sil.hidden = true; img.hidden = false; cap.hidden = false;
+    let k = 0;
+    img.src = fotos[0]; img.alt = modelos[i][0] + ', foto del laboratorio';
+    img.classList.remove('is-out');
+    if (fotos.length > 1) {
+      rot = setInterval(() => {
+        img.classList.add('is-out');
+        setTimeout(() => { if (gen !== rotGen) return; k = (k + 1) % fotos.length; img.src = fotos[k]; img.classList.remove('is-out'); }, 450);
+      }, 4500);
+    }
+  } else {
+    img.hidden = true; cap.hidden = true; sil.hidden = false;
+    document.getElementById('sil').className = 'sil ' + s.style;
+  }
+  document.getElementById('device-name').textContent = modelos[i][0];
+  document.getElementById('device-spec').textContent = s.year + ' · ' + s.chip + ' · ' + s.screen;
+}
+
+function render(i){ current = i; renderTable(i); renderDevice(i); updateOrder(); }
+select.addEventListener('change', e => {
+  const i = Number(e.target.value);
+  /* la reparación elegida se mantiene si el nuevo modelo la tiene; si no, se avisa */
+  aviso = null;
+  if (picked !== null && picked !== DIAG && modelos[i][1][picked] === 'No aplica') {
+    aviso = nombreRep(picked) + ' no aplica al ' + modelos[i][0] + '. Elegí otra reparación.';
+    picked = null;
+  }
+  render(i);
+});
+render(null);
+/* ==== MENÚ DEL CELULAR ==== */
+(function(){
+  const t = document.getElementById('mtoggle'), sheet = document.getElementById('msheet');
+  function set(open){
+    sheet.hidden = !open;
+    t.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  t.addEventListener('click', () => set(sheet.hidden));
+  sheet.addEventListener('click', e => { if (e.target.closest('a')) set(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !sheet.hidden) { set(false); t.focus(); } });
+  document.addEventListener('click', e => { if (!sheet.hidden && !sheet.contains(e.target) && !t.contains(e.target)) set(false); });
+  matchMedia('(min-width:821px)').addEventListener('change', e => { if (e.matches) set(false); });
+})();
+
+/* portada (celular): elegir modelo y bajar directo a la tabla con ese modelo */
+document.querySelectorAll('.hero-chips button').forEach(b => b.addEventListener('click', () => {
+  select.value = b.dataset.model; select.dispatchEvent(new Event('change'));
+  document.querySelector('.checker').scrollIntoView({block:'start'});
+}));
+document.querySelector('.hero-chips .chip-more').addEventListener('click', e => {
+  e.preventDefault();
+  select.scrollIntoView({block:'center'}); select.focus({preventScroll:true});
+});
+
+/* accesos de un toque a los modelos más pedidos */
+document.querySelectorAll('#quick-models button').forEach(b => b.addEventListener('click', () => {
+  select.value = b.dataset.model; select.dispatchEvent(new Event('change'));
+}));
+/* sin modelo, los botones del pedido llevan al selector y lo abren listo para elegir */
+['order-btn','mbar-btn'].forEach(id => document.getElementById(id).addEventListener('click', e => {
+  if (current !== null) return;
+  e.preventDefault();
+  select.scrollIntoView({block:'center'}); select.focus({preventScroll:true});
+}));
+
+/* ==== MENÚ DESPLEGABLE ==== */
+(function(){
+  const menu = document.getElementById('menu'), mega = document.getElementById('mega');
+  const scrim = document.getElementById('mega-scrim'), ind = document.getElementById('menu-ind');
+  const header = document.querySelector('.nav');
+  const items = Array.from(menu.querySelectorAll('.menu-item'));
+  const canHover = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  let open = null, tOpen = 0, tClose = 0;
+
+  function moveInd(btn){
+    if (!btn) { ind.classList.remove('on'); return; }
+    const r = btn.getBoundingClientRect(), m = menu.getBoundingClientRect();
+    ind.style.width = (r.width - 28) + 'px';
+    ind.style.transform = 'translateX(' + (r.left - m.left + 14) + 'px)';
+    ind.classList.add('on');
+  }
+  function show(btn){
+    clearTimeout(tClose);
+    if (open === btn) return;
+    const panel = document.getElementById(btn.dataset.panel);
+    const was = open;
+    items.forEach(b => b.setAttribute('aria-expanded', b === btn ? 'true' : 'false'));
+    mega.querySelectorAll('.panel').forEach(p => { if (p !== panel) p.classList.remove('on', 'show'); });
+    panel.classList.add('on');
+    mega.classList.remove('closing');
+    const from = mega.offsetHeight;
+    mega.style.height = 'auto';
+    const to = mega.offsetHeight;
+    mega.style.height = from + 'px';
+    mega.offsetHeight;
+    mega.style.height = to + 'px';
+    panel.classList.remove('show');
+    requestAnimationFrame(() => {
+      panel.querySelectorAll('.st').forEach((el, i) => el.style.transitionDelay = (was ? 0 : 60) + i * 45 + 'ms');
+      panel.classList.add('show');
+    });
+    scrim.classList.add('on');
+    moveInd(btn);
+    open = btn;
+  }
+  function hide(){
+    clearTimeout(tOpen);
+    if (!open) return;
+    mega.style.height = mega.offsetHeight + 'px';
+    mega.offsetHeight;
+    mega.classList.add('closing');
+    mega.style.height = '0px';
+    mega.querySelectorAll('.panel.show').forEach(p => p.classList.remove('show'));
+    items.forEach(b => b.setAttribute('aria-expanded', 'false'));
+    scrim.classList.remove('on');
+    moveInd(null);
+    open = null;
+  }
+  mega.addEventListener('transitionend', e => {
+    if (e.target !== mega || e.propertyName !== 'height') return;
+    if (!open) { mega.querySelectorAll('.panel').forEach(p => p.classList.remove('on')); mega.classList.remove('closing'); }
+    else mega.style.height = 'auto';
+  });
+  items.forEach(btn => {
+    btn.addEventListener('click', () => (open === btn ? hide() : show(btn)));
+    if (canHover) {
+      btn.addEventListener('mouseenter', () => { clearTimeout(tClose); clearTimeout(tOpen); tOpen = setTimeout(() => show(btn), open ? 0 : 70); });
+    }
+  });
+  if (canHover) {
+    header.addEventListener('mouseleave', () => { clearTimeout(tOpen); tClose = setTimeout(hide, 180); });
+    header.addEventListener('mouseenter', () => clearTimeout(tClose));
+  }
+  scrim.addEventListener('click', hide);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && open) { const b = open; hide(); b.focus(); } });
+  window.addEventListener('resize', () => { if (open) moveInd(open); });
+
+  /* links del menú: modelo y reparación */
+  mega.addEventListener('click', e => {
+    const a = e.target.closest('a'); if (!a) return;
+    if (a.dataset.model != null) { select.value = a.dataset.model; select.dispatchEvent(new Event('change')); }
+    if (a.dataset.pick != null) {
+      const j = Number(a.dataset.pick);
+      /* no marcar una reparación que el modelo elegido no tiene */
+      if (current === null || modelos[current][1][j] !== 'No aplica') { picked = j; renderTable(current); updateOrder(); }
+    }
+    hide();
+  });
+})();
+
+/* ==== CARRUSEL DE TRABAJOS ==== */
+(function(){
+  const track = document.getElementById('car-track');
+  const slides = Array.from(track.querySelectorAll('.slide'));
+  const prev = document.getElementById('car-prev'), next = document.getElementById('car-next');
+  const count = document.getElementById('car-count').querySelector('b');
+  const bar = document.getElementById('car-bar');
+  const step = () => slides[1].offsetLeft - slides[0].offsetLeft;
+  function update(){
+    const max = track.scrollWidth - track.clientWidth;
+    const i = Math.min(slides.length - 1, Math.round(track.scrollLeft / step()));
+    count.textContent = (track.scrollLeft >= max - 4) ? slides.length : i + 1;
+    bar.style.width = (max > 0 ? Math.max(8, (track.scrollLeft / max) * 100) : 100) + '%';
+    prev.disabled = track.scrollLeft <= 4;
+    next.disabled = track.scrollLeft >= max - 4;
+  }
+  prev.addEventListener('click', () => track.scrollBy({left: -step()}));
+  next.addEventListener('click', () => track.scrollBy({left: step()}));
+  track.addEventListener('scroll', () => requestAnimationFrame(update), {passive: true});
+  track.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); track.scrollBy({left: step()}); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); track.scrollBy({left: -step()}); }
+  });
+  /* arrastrar con el mouse en la compu */
+  let down = false, sx = 0, sl = 0, moved = false;
+  track.addEventListener('pointerdown', e => {
+    if (e.pointerType !== 'mouse') return;
+    down = true; moved = false; sx = e.clientX; sl = track.scrollLeft;
+  });
+  window.addEventListener('pointermove', e => {
+    if (!down) return;
+    const dx = e.clientX - sx;
+    if (Math.abs(dx) > 4 && !moved) { moved = true; track.classList.add('drag'); }
+    if (moved) track.scrollLeft = sl - dx;
+  });
+  window.addEventListener('pointerup', () => {
+    if (!down) return; down = false;
+    if (moved) {
+      track.classList.remove('drag');
+      const i = Math.round(track.scrollLeft / step());
+      track.scrollTo({left: i * step()});
+    }
+  });
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('vis'); io.unobserve(en.target); } }), {root: track, threshold: 0.4});
+    slides.forEach(s => io.observe(s));
+  } else slides.forEach(s => s.classList.add('vis'));
+  update();
+})();
+
+/* ==== ENTRADAS AL HACER SCROLL ==== */
+(function(){
+  const els = Array.from(document.querySelectorAll('.rv, .hero-photo'));
+  if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      const el = en.target;
+      const sibs = Array.from(el.parentElement.children).filter(c => c.classList.contains('rv'));
+      const idx = Math.max(0, sibs.indexOf(el));
+      el.style.transitionDelay = Math.min(idx * 75, 450) + 'ms';
+      el.classList.add('in');
+      io.unobserve(el);
+    });
+  }, {rootMargin: '0px 0px -8% 0px', threshold: 0.08});
+  els.forEach(e => io.observe(e));
+})();
+</script>
+
+</body></html>
